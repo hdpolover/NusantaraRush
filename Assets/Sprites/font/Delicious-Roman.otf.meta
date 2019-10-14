@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: f831d41fb5a214e488f2a8c0a5adcf97
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Delicious
+  fontNames:
+  - Delicious
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 5c67c883fab1729458c555f609002ef3, type: 3}
+  - {fileID: 12800000, guid: e7e2ad3419ee2ee479cca1d6797c73d3, type: 3}
+  - {fileID: 12800000, guid: 68fcbd2c8bbb1414180ee58a2dc1403d, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

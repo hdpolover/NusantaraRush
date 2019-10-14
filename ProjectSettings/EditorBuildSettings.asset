@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/LogoScreen.unity
+    guid: 3881de39a1f73d342b685d504056e47b
+  - enabled: 1
+    path: Assets/Scenes/TeamScreen.unity
+    guid: 03bbf649a48cdd5439d4c1511be6a0e5
+  - enabled: 1
+    path: Assets/Scenes/Startscreen.unity
+    guid: 374149ef03758bd468d2026b499328fb
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 54f6b3ea720d02a4fa5ea58edc596aa6
+  - enabled: 1
+    path: Assets/Scenes/Toko.unity
+    guid: ab244100d4ce9e04e8e5850a7cbb69f2
+  - enabled: 1
+    path: Assets/Scenes/Armada.unity
+    guid: 0fcf40f69c2150846a090cefbd71e176
+  - enabled: 1
+    path: Assets/Scenes/Produksi.unity
+    guid: f67ab79cccf44c1c798455eb535f55d5
+  - enabled: 1
+    path: Assets/Scenes/Produksi/ProduksiAcak.unity
+    guid: ab408e59a5023694ab4ad68ce502caf2
+  - enabled: 1
+    path: Assets/Scenes/Produksi/ProduksiMeriam.unity
+    guid: e578b55d1e5b2b49a91d41ff72fd57db
+  - enabled: 1
+    path: Assets/Scenes/Produksi/ProduksiMG.unity
+    guid: f819c2552a6f0c83dadea5185775e6f1
+  - enabled: 1
+    path: Assets/Scenes/Produksi/ProduksiTorpedo.unity
+    guid: c1398f316322a4d7eb41c79562ca1d32
+  - enabled: 1
+    path: Assets/Scenes/Loading.unity
+    guid: dab46fb2a4845dd449da9aca262fa283
+  - enabled: 1
+    path: Assets/Scenes/BattleChapters/Chapter01/M01.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Map.unity
+    guid: 2396250897bcb9c4697b41aa77dba311
+  m_configObjects: {}
