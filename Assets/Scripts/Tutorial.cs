@@ -81,8 +81,8 @@ public class Tutorial : MonoBehaviour
 
     void Connection()
     {
-        conn = "URI=file:" + Application.dataPath + "/Plugins/db.db";
-        dbconn = (IDbConnection)new SqliteConnection(conn);
+        conn = "URI=file:" + Application.persistentDataPath + "/database.db";
+        dbconn = new SqliteConnection(conn);
         dbconn.Open();
         dbcmd = dbconn.CreateCommand();
     }
@@ -97,6 +97,21 @@ public class Tutorial : MonoBehaviour
         dbcmd.ExecuteNonQuery();
 
         //previousTutorial.SetActive(false);
+
+        dbcmd.Dispose();
+        dbconn.Close();
+    }
+
+    public void NextTutorial2(GameObject previousTutorial)
+    {
+        tutorialProgressId++;
+
+        Connection();
+
+        dbcmd.CommandText = "UPDATE player_stat SET x_tutorial_progress_id = " + tutorialProgressId + " WHERE id = 1";
+        dbcmd.ExecuteNonQuery();
+
+        previousTutorial.SetActive(false);
 
         dbcmd.Dispose();
         dbconn.Close();

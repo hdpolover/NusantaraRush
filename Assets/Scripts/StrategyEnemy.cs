@@ -14,8 +14,11 @@ public class StrategyEnemy : MonoBehaviour
 
     public GameObject nodeBefore;
     public int positionOnNode = 4;
+    public int enemyShipId;
 
     public Button selesaiButton;
+
+    public GameObject loseScreen;
 
     public bool moveState = false;
     public bool checkPositionOnNode_State = false;
@@ -34,7 +37,8 @@ public class StrategyEnemy : MonoBehaviour
     void Start()
     {
         step = speed * Time.deltaTime;
-        strategyMove = GameObject.Find("Scripts").GetComponent<StrategyMove>();
+        strategyMove = scripts.GetComponent<StrategyMove>();
+        sqlScript = scripts.GetComponent<Sql>();
     }
 
     // Update is called once per frame
@@ -95,12 +99,18 @@ public class StrategyEnemy : MonoBehaviour
                     //load battle scene
                     if (nodeScript.isBattle)
                     {
-                        //save strategy state to sql
-                        //sqlScript = scripts.GetComponent<Sql>();
-                        //sqlScript.SaveStrategyState();
-
-                        //test.SetText("success");
                         SceneManager.LoadScene(battleSceneIndex);
+                    }
+                    else
+                    {
+                        //save strategy state to sql
+                        sqlScript.SaveStrategyState(positionOnNode, enemyShipId);
+                    }
+
+                    if (nodeScript.isPlayerBase)
+                    {
+                        sqlScript.DoneStrategyState();
+                        loseScreen.SetActive(true);
                     }
 
                     //set no battle value for last node

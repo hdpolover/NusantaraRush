@@ -7,6 +7,7 @@ using TMPro;
 
 public class TestTouchInput : MonoBehaviour
 {
+    public int shipId = 0;
     public string shipType;
     public int hp = 100;
     //public TextMeshProUGUI test;
@@ -27,12 +28,14 @@ public class TestTouchInput : MonoBehaviour
     StrategyShipInfo strategyShipInfo;
     Nodes nodeScript;
     Sql sqlScript;
+    //ShipsPosition shipsPosition;
 
     void Start(){
         step =  speed * Time.deltaTime;
         strategyMove = GameObject.Find("Scripts").GetComponent<StrategyMove>();
         strategyShipInfo = GameObject.Find("Scripts").GetComponent<StrategyShipInfo>();
         sqlScript = scripts.GetComponent<Sql>();
+        //shipsPosition = scripts.GetComponent<ShipsPosition>();
     }
 
     void Update()
@@ -123,14 +126,20 @@ public class TestTouchInput : MonoBehaviour
                     nodePostion = strategyMove.targetNodePos;
                     strategyShipInfo.cancelChoose();
 
+                    //Set ships position to array
+                    //shipsPosition.SaveShipsPosition(nodePostion, shipId);
+                    //shipsPosition.Debug();
+
                     //load battle scene
                     if (strategyMove.targetNodeIsBattle)
                     {
-                        //save strategy state to sql
-                        //sqlScript.SaveStrategyState();
-
                         //test.SetText("Success");
                         SceneManager.LoadScene(battleSceneIndex);
+                    }
+                    //save strategy state to sql
+                    else
+                    {
+                        sqlScript.SaveStrategyState(nodePostion, shipId);
                     }
                 }
             }

@@ -5,6 +5,8 @@ using UnityEngine;
 public class Nodes : MonoBehaviour
 {
     public bool isBattle = false;
+    public bool isEnemyBase = false;
+    public bool isPlayerBase = false;
     public int nodePos;
     public int[] allowedMoveFrom;
     StrategyMove strategyMove;
@@ -44,6 +46,8 @@ public class Nodes : MonoBehaviour
                             strategyMove.nodeTarget = gameObject;
                             strategyMove.targetNodePos = nodePos;
                             strategyMove.targetNodeIsBattle = isBattle;
+                            strategyMove.targetNodeIsEnemyBase = isEnemyBase;
+                            strategyMove.targetNodeIsPlayerBase = isPlayerBase;
                         }
                         else
                         {

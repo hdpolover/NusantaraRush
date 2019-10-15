@@ -25,42 +25,6 @@ public class PlayerStat : MonoBehaviour
         GetPlayerStats();
     }
 
-    public static class JsonHelper
-    {
-        public static T[] FromJson<T>(string json)
-        {
-            Wrapper<T> wrapper = JsonUtility.FromJson<Wrapper<T>>(json);
-            return wrapper.Items;
-        }
-
-        public static string ToJson<T>(T[] array)
-        {
-            Wrapper<T> wrapper = new Wrapper<T>();
-            wrapper.Items = array;
-            return JsonUtility.ToJson(wrapper);
-        }
-
-        public static string ToJson<T>(T[] array, bool prettyPrint)
-        {
-            Wrapper<T> wrapper = new Wrapper<T>();
-            wrapper.Items = array;
-            return JsonUtility.ToJson(wrapper, prettyPrint);
-        }
-
-        public static T[] getJsonArray<T>(string json)
-        {
-            string newJson = "{ \"items\": " + json + "}";
-            Wrapper<T> wrapper = JsonUtility.FromJson<Wrapper<T>>(newJson);
-            return wrapper.Items;
-        }
-
-        [System.Serializable]
-        private class Wrapper<T>
-        {
-            public T[] Items;
-        }
-    }
-
     public IEnumerator GetPlayerStat()
     {
         string url = dbHandler.GetConnection() + "/_nusantara_rush/get_player_stat.php";

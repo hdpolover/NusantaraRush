@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using Mono.Data.Sqlite;
+using System.Data;
+
 public class StrategyMove : MonoBehaviour
 {
     public bool shipTerpilih;
@@ -11,8 +14,11 @@ public class StrategyMove : MonoBehaviour
     public int shipNodePos;
     public GameObject firstNode;
     public int targetNodePos;
+    public GameObject[] nodes;
     public GameObject nodeTarget;
     public bool targetNodeIsBattle;
+    public bool targetNodeIsEnemyBase;
+    public bool targetNodeIsPlayerBase;
 
     public int movePoints = 1;
     private int lastMovePoints = 1;
@@ -23,6 +29,10 @@ public class StrategyMove : MonoBehaviour
     public Button menyerahButton;
     public Button batalButton;
     public Button selesaiButton;
+
+    public GameObject winScreen;
+    public GameObject loseScreen;
+    public GameObject confirmWindow;
 
     public Transform deployNode;
     public GameObject ship;
@@ -35,8 +45,15 @@ public class StrategyMove : MonoBehaviour
     public int shipLeft = 4;
 
     public GameObject scripts;
+    Sql sqlScript;
     void Start() {
+        winScreen.SetActive(false);
+        loseScreen.SetActive(false);
         selesaiButton.interactable = false;
+        sqlScript = scripts.GetComponent<Sql>();
+
+        confirmWindow.SetActive(false);
+        sqlScript.CheckStrategyState(confirmWindow);
     }
 
     void Update()
@@ -47,8 +64,6 @@ public class StrategyMove : MonoBehaviour
             selesaiButton.interactable = false;
         }
 
-        // - banyak proses, lag
-        // todo : buat bool check
         if (shipMove)
         {
             menyerahButton.interactable = false;
@@ -60,6 +75,43 @@ public class StrategyMove : MonoBehaviour
             batalButton.interactable = true;
         }
         //shipNodePos = targetNodePos;
+    }
+
+    public void LoadStrategyState()
+    {
+        string path_sqlite = "URI=file:" + Application.persistentDataPath + "/database.db";
+        IDbConnection myConnection = new SqliteConnection(path_sqlite);
+        myConnection.Open();
+        IDbCommand myCommand = myConnection.CreateCommand();
+
+        myCommand.CommandText = "SELECT * FROM mission_ships";
+        IDataReader reader = myCommand.ExecuteReader();
+
+        while (reader.Read())
+        {
+            if (reader.GetInt32(0) < 50)
+            {
+                GameObject instance = Instantiate(ship, nodes[reader.GetInt32(1)].transform.position, nodes[reader.GetInt32(1)].transform.rotation);
+                TestTouchInput playerShip = instance.GetComponent<TestTouchInput>();
+                playerShip.nodeBefore = nodes[reader.GetInt32(1)];
+                playerShip.scripts = scripts;
+                playerShip.shipType = "Main Boat 1";
+                playerShip.shipId = reader.GetInt32(0);
+                playerShip.nodePostion = reader.GetInt32(1);
+                movePoints++;
+                lastMovePoints++;
+            }
+            else
+            {
+                // for enemy instantiate
+            }
+        }
+
+        reader.Close();
+        myCommand.Dispose();
+        myConnection.Close();
+
+        confirmWindow.SetActive(false);
     }
 
     public void UpdateMovePoints(int quantity)
@@ -74,6 +126,12 @@ public class StrategyMove : MonoBehaviour
         menyerahButton.interactable = true;
         batalButton.interactable = true;
         selesaiButton.interactable = false;
+
+        if (targetNodeIsEnemyBase)
+        {
+            sqlScript.DoneStrategyState();
+            winScreen.SetActive(true);
+        }
     }
 
     public void DeployShip(int shipButtonId)
@@ -88,34 +146,42 @@ public class StrategyMove : MonoBehaviour
         if (shipButtonId == 1)
         {
             playerShip.shipType = "Main Boat 1";
+            playerShip.shipId = shipButtonId;
             ship1.interactable = false;
             shipLeft--;
             movePoints--;
             lastMovePoints++;
+            sqlScript.SaveStrategyState(0, shipButtonId);
         }
         else if (shipButtonId == 2)
         {
             playerShip.shipType = "Main Boat 2";
+            playerShip.shipId = shipButtonId;
             ship2.interactable = false;
             shipLeft--;
             movePoints--;
             lastMovePoints++;
+            sqlScript.SaveStrategyState(0, shipButtonId);
         }
         else if (shipButtonId == 3)
         {
             playerShip.shipType = "Warship 1";
+            playerShip.shipId = shipButtonId;
             ship3.interactable = false;
             shipLeft--;
             movePoints--;
             lastMovePoints++;
+            sqlScript.SaveStrategyState(0, shipButtonId);
         }
         else if (shipButtonId == 4)
         {
             playerShip.shipType = "Warship 2";
+            playerShip.shipId = shipButtonId;
             ship4.interactable = false;
             shipLeft--;
             movePoints--;
             lastMovePoints++;
+            sqlScript.SaveStrategyState(0, shipButtonId);
         }
     }
 }
