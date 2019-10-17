@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 
 public class FireHandler : MonoBehaviour
 { 
     public GameObject player;
     public GameObject firePoint;
+    public GameObject firePoint1;
 
     public GameObject rocketPrefab;
     public GameObject mgPrefab;
@@ -19,9 +19,9 @@ public class FireHandler : MonoBehaviour
 
     public float bulletForce;
 
-    public float rocketDamage = 20;
-    public float mgDamage = 2;
-    public float cannonDamage = 15;
+    public float rocketDamage;
+    public float mgDamage;
+    public float cannonDamage;
 
     void Start()
     {
@@ -31,43 +31,44 @@ public class FireHandler : MonoBehaviour
         mgBtn = GameObject.Find("Mg").GetComponent<Button>();
         rocketBtn = GameObject.Find("Rocket").GetComponent<Button>();
         cannonBtn = GameObject.Find("Cannon").GetComponent<Button>();
-
-        //panelHabis.SetActive(false);
-
+        
         CheckPlayerShip();
-    }
-
-    private void FixedUpdate()
-    {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            FireCannon();
-        }
     }
 
     void CheckPlayerShip()
     {
         if (player.name.Equals("PlayerBoat1"))
         {
+            bh.mgBulletCount = bh.maxMgBulletCount;
+
             rocketBtn.interactable = false;
+            bh.rocketBulletCount = 0;
             rocketBtn.GetComponent<Image>().color = new Color32(255, 255, 225, 255);
-            mgBtn.interactable = false;
-            mgBtn.GetComponent<Image>().color = new Color32(255, 255, 225, 255);
+            cannonBtn.interactable = false;
+            bh.cannonBulletCount = 0;
+            cannonBtn.GetComponent<Image>().color = new Color32(255, 255, 225, 255);
         } else if (player.name.Equals("PlayerBoat2"))
         {
-            cannonBtn.interactable = false;
-            cannonBtn.GetComponent<Image>().color = new Color32(255, 255, 225, 255);
+            bh.cannonBulletCount = bh.maxCannonBulletCount;
+
+            mgBtn.interactable = false;
+            bh.mgBulletCount = 0;
+            mgBtn.GetComponent<Image>().color = new Color32(255, 255, 225, 255);
             rocketBtn.interactable = false;
+            bh.rocketBulletCount = 0;
             rocketBtn.GetComponent<Image>().color = new Color32(255, 255, 225, 255);
         } else if (player.name.Equals("PlayerWarship1"))
         {
             mgBtn.interactable = false;
+            bh.mgBulletCount = 0;
             mgBtn.GetComponent<Image>().color = new Color32(255, 255, 225, 255);
         } else if (player.name.Equals("PlayerWarship2"))
         {
             cannonBtn.interactable = false;
+            bh.cannonBulletCount = 0;
             cannonBtn.GetComponent<Image>().color = new Color32(255, 255, 225, 255);
             mgBtn.interactable = false;
+            bh.mgBulletCount = 0;
             mgBtn.GetComponent<Image>().color = new Color32(255, 255, 225, 255);
             rocketBtn.interactable = false;
             rocketBtn.GetComponent<Image>().color = new Color32(255, 255, 225, 255);
@@ -79,13 +80,11 @@ public class FireHandler : MonoBehaviour
         GameObject Temporary_Bullet_Handler;
         Temporary_Bullet_Handler = Instantiate(rocketPrefab, firePoint.transform.position, firePoint.transform.rotation) as GameObject;
         
-        //mporary_Bullet_Handler.transform.Rotate(Vector3.left * 90);
-        
         Rigidbody Temporary_RigidBody;
         Temporary_RigidBody = Temporary_Bullet_Handler.GetComponent<Rigidbody>();
         
         Temporary_RigidBody.AddForce(transform.forward * bulletForce);
-        ReduceAmmo();
+        ReduceRocketAmmo();
 
         Destroy(Temporary_Bullet_Handler, 5.0f);
 
@@ -93,26 +92,35 @@ public class FireHandler : MonoBehaviour
 
     public void FireMg()
     {
-        GameObject Temporary_Bullet_Handler;
-        Temporary_Bullet_Handler = Instantiate(mgPrefab, firePoint.transform.position, firePoint.transform.rotation) as GameObject;
+        if (bh.mgBulletCount <= 0)
+        {
+            mgBtn.interactable = false;
+            mgBtn.GetComponent<Image>().color = new Color32(255, 255, 225, 255);
+        } else
+        {
+            GameObject Temporary_Bullet_Handler;
+            Temporary_Bullet_Handler = Instantiate(mgPrefab, firePoint.transform.position, firePoint.transform.rotation) as GameObject;
+            GameObject Temporary_Bullet_Handler1;
+            Temporary_Bullet_Handler1 = Instantiate(mgPrefab, firePoint1.transform.position, firePoint1.transform.rotation) as GameObject;
 
-        //mporary_Bullet_Handler.transform.Rotate(Vector3.left * 90);
+            Rigidbody Temporary_RigidBody;
+            Temporary_RigidBody = Temporary_Bullet_Handler.GetComponent<Rigidbody>();
+            Rigidbody Temporary_RigidBody1;
+            Temporary_RigidBody1 = Temporary_Bullet_Handler1.GetComponent<Rigidbody>();
 
-        Rigidbody Temporary_RigidBody;
-        Temporary_RigidBody = Temporary_Bullet_Handler.GetComponent<Rigidbody>();
+            Temporary_RigidBody.AddForce(transform.forward * bulletForce);
+            Temporary_RigidBody1.AddForce(transform.forward * bulletForce);
+            ReduceMgAmmo();
 
-        Temporary_RigidBody.AddForce(transform.forward * bulletForce);
-        ReduceAmmo();
-
-        Destroy(Temporary_Bullet_Handler, 5.0f);
-
+            Destroy(Temporary_Bullet_Handler, 2.0f);
+            Destroy(Temporary_Bullet_Handler1, 2.0f);
+        }
     }
 
     public void FireCannon()
     {
-        if (bh.bulletCount <= 0.5f)
+        if (bh.cannonBulletCount <= 0.5f)
         {
-            //panelHabis.SetActive(true);
             cannonBtn.interactable = false;
             cannonBtn.GetComponent<Image>().color = new Color32(255, 255, 225, 255);
         }
@@ -128,14 +136,23 @@ public class FireHandler : MonoBehaviour
             Temporary_RigidBody = Temporary_Bullet_Handler.GetComponent<Rigidbody>();
 
             Temporary_RigidBody.AddForce(transform.forward * bulletForce);
-            ReduceAmmo();
+            ReduceCannonAmmo();
 
             Destroy(Temporary_Bullet_Handler, 3.0f);
         }
     }
 
-    public void ReduceAmmo()
+    public void ReduceMgAmmo()
     {
-       bh.bulletCount -= 1;
+       bh.mgBulletCount -= 2;
+    }
+
+    public void ReduceCannonAmmo()
+    {
+        bh.cannonBulletCount -= 1;
+    }
+    public void ReduceRocketAmmo()
+    {
+        bh.rocketBulletCount -= 1;
     }
 }

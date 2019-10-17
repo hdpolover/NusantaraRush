@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 
 public class EndGame : MonoBehaviour
@@ -8,38 +6,53 @@ public class EndGame : MonoBehaviour
     public GameObject EndGameUI;
     public GameObject pauseButton;
     public TextMeshProUGUI endLabel;
-    public TextMeshProUGUI lanjutan;
 
-    private GameObject[] enemies;
-    public float enemyTotal;
+    private GameObject[] smallEnemies;
+    private GameObject[] mediumEnemies;
+    private GameObject[] bigEnemies;
+
+    private int enemyTotal;
+    public TextMeshProUGUI enemyTotalText;
     private GameObject player;
     
 
     private void Start()
     {
         EndGameUI.SetActive(false);
-        enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        enemyTotal = enemies.Length;
 
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
+    int getEnemyTotal()
+    {
+        smallEnemies = GameObject.FindGameObjectsWithTag("EnemySmall");
+        mediumEnemies = GameObject.FindGameObjectsWithTag("EnemyMedium");
+        bigEnemies = GameObject.FindGameObjectsWithTag("EnemyBig");
+
+        enemyTotal = smallEnemies.Length + mediumEnemies.Length + bigEnemies.Length;
+        return enemyTotal;
+    }
+
     private void Update()
     {
+        getEnemyTotal();
+        enemyTotalText.SetText(enemyTotal + "");
+
         if (enemyTotal == 0)
         {
-            endLabel.SetText("You Won!");
+            endLabel.SetText("Kamu berhasil!");
             Win();
         } else
         {
-            /*
-            if (player.GetComponent<PlayerHealth>().currentHealth <= 0)
+            if (player != null)
             {
-                Destroy(player.gameObject);
-                endLabel.SetText("Game Over!");
-                GameOver();
+                if (player.GetComponent<PlayerHealth>().currentHealth <= 0)
+                {
+                    Destroy(player.gameObject);
+                    endLabel.SetText("Kamu gagal!");
+                    GameOver();
+                }
             }
-            */
         }
     }
 
@@ -48,7 +61,6 @@ public class EndGame : MonoBehaviour
         pauseButton.SetActive(false);
         EndGameUI.SetActive(true);
         Time.timeScale = 0f;
-        lanjutan.SetText("Menu");
     }
 
     public void Win()
@@ -56,7 +68,6 @@ public class EndGame : MonoBehaviour
         pauseButton.SetActive(false);
         EndGameUI.SetActive(true);
         Time.timeScale = 0f;
-        lanjutan.SetText("Lanjut");
     }
 
     public void Lanjutan()

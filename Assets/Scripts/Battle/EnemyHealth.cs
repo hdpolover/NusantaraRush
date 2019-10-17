@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
@@ -13,12 +11,13 @@ public class EnemyHealth : MonoBehaviour
     private float currentHealth;
     private GameObject player;
 
-    readonly FireHandler fr;
+    FireHandler fr;
     public GameObject cratePrefab;
 
     private void Start()
     {
         player = GameObject.FindWithTag("Player");
+        fr = player.GetComponent<FireHandler>();
         currentHealth = startHealth;
     }
 
@@ -32,8 +31,7 @@ public class EnemyHealth : MonoBehaviour
         {
             Destroy(gameObject);
 
-            GameObject crate = Instantiate(cratePrefab, new Vector3(gameObject.transform.position.x,
-                gameObject.transform.position.y + 1.5f, gameObject.transform.position.z), Quaternion.identity) as GameObject;
+            Instantiate(cratePrefab, gameObject.transform.position, Quaternion.identity);
         }
     }
 
@@ -51,10 +49,21 @@ public class EnemyHealth : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Bullet")
+        if (other.gameObject.tag == "MgBullet")
         {
             Destroy(other.gameObject);
-            gameObject.GetComponent<EnemyHealth>().TakeDamage(10);
+
+            gameObject.GetComponent<EnemyHealth>().TakeDamage(fr.mgDamage);
+        } else if (other.gameObject.tag == "CannonBullet")
+        {
+            Destroy(other.gameObject);
+
+            gameObject.GetComponent<EnemyHealth>().TakeDamage(fr.cannonDamage);
+        } else if (other.gameObject.tag == "RocketBullet")
+        {
+            Destroy(other.gameObject);
+
+            gameObject.GetComponent<EnemyHealth>().TakeDamage(fr.rocketDamage);
         }
     }
 }

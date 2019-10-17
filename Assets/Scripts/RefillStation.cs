@@ -32,6 +32,7 @@ public class RefillStation : MonoBehaviour
     {
         cannonBtn.interactable = true;
 
+        /*
         if (bh.bulletCount < 100)
         {
             bh.bulletCount += 0.05f;
@@ -39,6 +40,7 @@ public class RefillStation : MonoBehaviour
         {
             isian.SetText("Amunisi penuh.");
         }
+        */
     }
     
     private void OnTriggerExit(Collider other)

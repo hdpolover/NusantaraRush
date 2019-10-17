@@ -3,18 +3,22 @@ using TMPro;
 
 public class BulletHandler : MonoBehaviour
 {
-    public float maxBulletCount = 100;
-    public float bulletCount;
-    public TextMeshProUGUI t;
-    
-    void Start()
-    {
-        bulletCount = 100;
-        t.SetText("" + Mathf.Round(bulletCount));
-    }
+    public float maxMgBulletCount = 300;
+    public float maxCannonBulletCount = 50;
+    public float maxRocketBulletCount = 20;
+
+    [HideInInspector] public float mgBulletCount;
+    [HideInInspector] public float cannonBulletCount;
+    [HideInInspector] public float rocketBulletCount;
+
+    public TextMeshProUGUI mgCountText;
+    public TextMeshProUGUI cannonCountText;
+    public TextMeshProUGUI rocketCountText;
 
     private void Update()
     {
-        t.SetText("" + Mathf.Round(bulletCount));
+        mgCountText.SetText("" + Mathf.Round(mgBulletCount));
+        cannonCountText.SetText("" + Mathf.Round(cannonBulletCount));
+        rocketCountText.SetText("" + Mathf.Round(rocketBulletCount));
     }
 }

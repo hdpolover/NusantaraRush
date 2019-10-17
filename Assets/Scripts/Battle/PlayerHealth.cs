@@ -7,7 +7,7 @@ public class PlayerHealth : MonoBehaviour
 {
     public Image healthBar;
     public float startHealth = 100;
-    private float currentHealth;
+    [HideInInspector] public float currentHealth;
 
     private void Start()
     {
@@ -21,4 +21,25 @@ public class PlayerHealth : MonoBehaviour
         healthBar.fillAmount = currentHealth / startHealth;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "MgBullet")
+        {
+            Destroy(other.gameObject);
+
+            TakeDamage(0.5f);
+        }
+        else if (other.gameObject.tag == "CannonBullet")
+        {
+            Destroy(other.gameObject);
+
+            TakeDamage(5f);
+        }
+        else if (other.gameObject.tag == "RocketBullet")
+        {
+            Destroy(other.gameObject);
+
+            TakeDamage(10);
+        }
+    }
 }
