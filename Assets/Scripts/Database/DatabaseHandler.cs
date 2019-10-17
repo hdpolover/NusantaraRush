@@ -101,7 +101,7 @@ public class DatabaseHandler : MonoBehaviour
             string create_table_player_stat =
                 "CREATE TABLE player_stat(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
-                "is_done_set_name INTEGER"+
+                "is_done_set_name INTEGER,"+
                 "nama TEXT," +
                 "poin INTEGER," +
                 "part INTEGER," +
