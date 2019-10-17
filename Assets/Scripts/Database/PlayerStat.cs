@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using Mono.Data.Sqlite;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Networking;
 using PlayerDataClass;
 using System.IO;
@@ -16,6 +17,9 @@ public class PlayerStat : MonoBehaviour
     public GameObject playerAmmo;
 
     public GameObject scripts;
+
+    public GameObject setNameScreen;
+    public Text Name;
     DatabaseHandler dbHandler;
 
     // Start is called before the first frame update
@@ -23,7 +27,9 @@ public class PlayerStat : MonoBehaviour
     {
         dbHandler = scripts.GetComponent<DatabaseHandler>();
         //StartCoroutine(GetPlayerStat());
+        setNameScreen.SetActive(false);
         GetPlayerStats();
+        CekSudahIsiNama();
     }
 
     public IEnumerator GetPlayerStat()
@@ -52,6 +58,46 @@ public class PlayerStat : MonoBehaviour
         }
     }
 
+    void CekSudahIsiNama()
+    {
+        string check = Application.persistentDataPath + "/database.db";
+        if (File.Exists(check))
+        {
+            string path_sqlite = "URI=file:" + Application.persistentDataPath + "/database.db";
+            IDbConnection myConnection = new SqliteConnection(path_sqlite);
+            myConnection.Open();
+            IDbCommand myCommand = myConnection.CreateCommand();
+            myCommand.CommandText = "SELECT is_done_set_name FROM player_stat WHERE id = 1";
+            IDataReader myReader = myCommand.ExecuteReader();
+
+            while (myReader.Read())
+            {
+                if (myReader.GetInt32(0) == 0)
+                {
+                    setNameScreen.SetActive(true);
+                }
+            }
+            myReader.Close();
+            myCommand.Dispose();
+            myConnection.Close();
+        }
+    }
+
+    public void SetName()
+    {
+        string path_sqlite = "URI=file:" + Application.persistentDataPath + "/database.db";
+        IDbConnection myConnection = new SqliteConnection(path_sqlite);
+        myConnection.Open();
+        IDbCommand myCommand = myConnection.CreateCommand();
+        myCommand.CommandText = "UPDATE player_stat SET is_done_set_name = 1, nama = '"+Name.text+"'";
+        myCommand.ExecuteNonQuery();
+
+        myCommand.Dispose();
+        myConnection.Close();
+        setNameScreen.SetActive(false);
+        GetPlayerStats();
+    }
+
     public void GetPlayerStats()
     {
         //dbHandler.MakeSqliteDatabase();
@@ -63,16 +109,15 @@ public class PlayerStat : MonoBehaviour
             IDbConnection myConnection = new SqliteConnection(path_sqlite);
             myConnection.Open();
             IDbCommand myCommand = myConnection.CreateCommand();
-            string sqlQuery = "SELECT * FROM player_stat";
+            string sqlQuery = "SELECT nama, poin, part, ammo FROM player_stat";
             myCommand.CommandText = sqlQuery;
             IDataReader myReader = myCommand.ExecuteReader();
             while (myReader.Read())
             {
-                int id = myReader.GetInt32(0);
-                string nama = myReader.GetString(1);
-                int poin = myReader.GetInt32(2);
-                int part = myReader.GetInt32(3);
-                int ammo = myReader.GetInt32(4);
+                string nama = myReader.GetString(0);
+                int poin = myReader.GetInt32(1);
+                int part = myReader.GetInt32(2);
+                int ammo = myReader.GetInt32(3);
 
                 // Debug.Log(id+", "+nama+", "+poin+", "+part+", "+ammo);
                 playerName.GetComponent<TMPro.TextMeshProUGUI>().text = " " + nama;

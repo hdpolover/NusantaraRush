@@ -101,6 +101,7 @@ public class DatabaseHandler : MonoBehaviour
             string create_table_player_stat =
                 "CREATE TABLE player_stat(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
+                "is_done_set_name INTEGER"+
                 "nama TEXT," +
                 "poin INTEGER," +
                 "part INTEGER," +
@@ -137,7 +138,7 @@ public class DatabaseHandler : MonoBehaviour
             string insert_data =
                 "INSERT INTO main.mission_info VALUES(1, null, null);" +
 
-                "INSERT INTO main.player_stat VALUES(1, 'MyName', 4006890, 387200, 238005, 1, 1, 1, 0, 1, 1);" +
+                "INSERT INTO main.player_stat VALUES(1, 0, 'MyName', 4006890, 387200, 238005, 1, 1, 1, 0, 1, 1);" +
 
                 "INSERT INTO main.tutorial_progress VALUES(1, 'Misi.', 0, 0);" +
                 "INSERT INTO main.tutorial_progress VALUES(2, 'Lanjut.', 0, 0);" +
