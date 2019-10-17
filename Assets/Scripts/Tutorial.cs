@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 using Mono.Data.Sqlite;
 using System.Data;
+using System.IO;
 
 public class Tutorial : MonoBehaviour
 {
@@ -40,43 +41,46 @@ public class Tutorial : MonoBehaviour
 
     public void CheckTutorial()
     {
-        Connection();
-
-        dbcmd.CommandText = "SELECT x_tutorial_progress_id FROM player_stat";
-        IDataReader reader = dbcmd.ExecuteReader();
-        while (reader.Read())
+        string check = Application.persistentDataPath + "/database.db";
+        if (File.Exists(check))
         {
-            tutorialProgressId = reader.GetInt32(0);
-        }
+            Connection();
 
-        reader.Close();
-        dbcmd.Dispose();
-        dbconn.Close();
-
-        for (int i = 0; i < tutorList.Length; i++)
-        {
-            if (tutorList[i] == tutorialProgressId)
+            dbcmd.CommandText = "SELECT x_tutorial_progress_id FROM player_stat";
+            IDataReader reader = dbcmd.ExecuteReader();
+            while (reader.Read())
             {
-                tutorPanels[i].SetActive(true);
-                SetInteractableButtons(false);
+                tutorialProgressId = reader.GetInt32(0);
+            }
 
-                GameObject tutorText = tutorPanels[i].transform.GetChild(2).gameObject;
-                Text text = tutorText.GetComponent<Text>();
+            reader.Close();
+            dbcmd.Dispose();
+            dbconn.Close();
 
-                Connection();
-
-                dbcmd.CommandText = "SELECT content FROM tutorial_progress WHERE tutorial_progress_id = "+tutorialProgressId;
-                IDataReader reader2 = dbcmd.ExecuteReader();
-                while (reader2.Read())
+            for (int i = 0; i < tutorList.Length; i++)
+            {
+                if (tutorList[i] == tutorialProgressId)
                 {
-                    text.text = reader2.GetString(0);
+                    tutorPanels[i].SetActive(true);
+                    SetInteractableButtons(false);
+
+                    GameObject tutorText = tutorPanels[i].transform.GetChild(2).gameObject;
+                    Text text = tutorText.GetComponent<Text>();
+
+                    Connection();
+
+                    dbcmd.CommandText = "SELECT content FROM tutorial_progress WHERE tutorial_progress_id = " + tutorialProgressId;
+                    IDataReader reader2 = dbcmd.ExecuteReader();
+                    while (reader2.Read())
+                    {
+                        text.text = reader2.GetString(0);
+                    }
+                    reader2.Close();
+                    dbcmd.Dispose();
+                    dbconn.Close();
                 }
-                reader2.Close();
-                dbcmd.Dispose();
-                dbconn.Close();
             }
         }
-
     }
 
     void Connection()

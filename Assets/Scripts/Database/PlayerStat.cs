@@ -5,6 +5,7 @@ using Mono.Data.Sqlite;
 using UnityEngine;
 using UnityEngine.Networking;
 using PlayerDataClass;
+using System.IO;
 
 public class PlayerStat : MonoBehaviour
 {
@@ -53,31 +54,35 @@ public class PlayerStat : MonoBehaviour
 
     public void GetPlayerStats()
     {
-        dbHandler.MakeSqliteDatabase();
+        //dbHandler.MakeSqliteDatabase();
 
-        string path_sqlite = "URI=file:" + Application.persistentDataPath + "/database.db";
-        IDbConnection myConnection = new SqliteConnection(path_sqlite);
-        myConnection.Open();
-        IDbCommand myCommand = myConnection.CreateCommand();
-        string sqlQuery = "SELECT * FROM player_stat";
-        myCommand.CommandText = sqlQuery;
-        IDataReader myReader = myCommand.ExecuteReader();
-        while (myReader.Read())
+        string check = Application.persistentDataPath + "/database.db";
+        if (File.Exists(check))
         {
-            int id = myReader.GetInt32(0);
-            string nama = myReader.GetString(1);
-            int poin = myReader.GetInt32(2);
-            int part = myReader.GetInt32(3);
-            int ammo = myReader.GetInt32(4);
+            string path_sqlite = "URI=file:" + Application.persistentDataPath + "/database.db";
+            IDbConnection myConnection = new SqliteConnection(path_sqlite);
+            myConnection.Open();
+            IDbCommand myCommand = myConnection.CreateCommand();
+            string sqlQuery = "SELECT * FROM player_stat";
+            myCommand.CommandText = sqlQuery;
+            IDataReader myReader = myCommand.ExecuteReader();
+            while (myReader.Read())
+            {
+                int id = myReader.GetInt32(0);
+                string nama = myReader.GetString(1);
+                int poin = myReader.GetInt32(2);
+                int part = myReader.GetInt32(3);
+                int ammo = myReader.GetInt32(4);
 
-            // Debug.Log(id+", "+nama+", "+poin+", "+part+", "+ammo);
-            playerName.GetComponent<TMPro.TextMeshProUGUI>().text = " " + nama;
-            playerPoin.GetComponent<TMPro.TextMeshProUGUI>().text = " " + poin;
-            playerPart.GetComponent<TMPro.TextMeshProUGUI>().text = " " + part;
-            playerAmmo.GetComponent<TMPro.TextMeshProUGUI>().text = " " + ammo;
+                // Debug.Log(id+", "+nama+", "+poin+", "+part+", "+ammo);
+                playerName.GetComponent<TMPro.TextMeshProUGUI>().text = " " + nama;
+                playerPoin.GetComponent<TMPro.TextMeshProUGUI>().text = " " + poin;
+                playerPart.GetComponent<TMPro.TextMeshProUGUI>().text = " " + part;
+                playerAmmo.GetComponent<TMPro.TextMeshProUGUI>().text = " " + ammo;
+            }
+            myReader.Close();
+            myCommand.Dispose();
+            myConnection.Close();
         }
-        myReader.Close();
-        myCommand.Dispose();
-        myConnection.Close();
     }
 }

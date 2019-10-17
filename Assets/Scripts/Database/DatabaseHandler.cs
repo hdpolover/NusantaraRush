@@ -10,6 +10,7 @@ public class DatabaseHandler : MonoBehaviour
     public Connection connData;
     string path;
     string path_sqlite;
+    public GameObject doneMakeDatabaseScreen;
 
     IDbConnection myConnection;
     IDbCommand myCommand;
@@ -18,6 +19,7 @@ public class DatabaseHandler : MonoBehaviour
     {
         path = Application.persistentDataPath + "/connection.json";
         //MakeJsonConnection();
+        doneMakeDatabaseScreen.SetActive(false);
         MakeSqliteDatabase();
     }
 
@@ -53,7 +55,7 @@ public class DatabaseHandler : MonoBehaviour
                 "PRIMARY KEY(id ASC)," +
                 "FOREIGN KEY(x_tutorial_pogress_id) REFERENCES tutorial_progress(tutorial_progress_id) ON DELETE RESTRICT ON UPDATE CASCADE); ";
             dbcmd.CommandText = create_table_dialogs;
-            dbcmd.ExecuteReader();
+            dbcmd.ExecuteNonQuery();
             dbcmd.Dispose();
 
             dbcmd = conn.CreateCommand();
@@ -64,7 +66,7 @@ public class DatabaseHandler : MonoBehaviour
                 "ship  INTEGER," +
                 "PRIMARY KEY(mission_info_id ASC));";
             dbcmd.CommandText = create_table_mission_info;
-            dbcmd.ExecuteReader();
+            dbcmd.ExecuteNonQuery();
             dbcmd.Dispose();
 
             dbcmd = conn.CreateCommand();
@@ -75,16 +77,15 @@ public class DatabaseHandler : MonoBehaviour
                 "ship INTEGER," +
                 "x_mission_info_id INTEGER," +
                 "PRIMARY KEY (id ASC)," +
-                "CONSTRAINT fkey0 FOREIGN KEY (x_mission_info_id) REFERENCES mission_info (mission_info_id) ON DELETE RESTRICT ON UPDATE CASCADE," +
-                "FOREIGN KEY (ship) REFERENCES player_ship (id) ON DELETE RESTRICT ON UPDATE CASCADE);";
+                "CONSTRAINT fkey0 FOREIGN KEY (x_mission_info_id) REFERENCES mission_info (mission_info_id) ON DELETE RESTRICT ON UPDATE CASCADE);";
             dbcmd.CommandText = create_table_mission_ships;
-            dbcmd.ExecuteReader();
+            dbcmd.ExecuteNonQuery();
             dbcmd.Dispose();
 
             dbcmd = conn.CreateCommand();
             string create_table_player_ship =
                 "CREATE TABLE player_ship(" +
-                    "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "id INTEGER PRIMARY KEY," +
                     "ship_type INTEGER," +
                     "rocket_equip INTEGER," +
                     "mg_equip INTEGER," +
@@ -93,7 +94,7 @@ public class DatabaseHandler : MonoBehaviour
                     "health INTEGER" +
                 ");";
             dbcmd.CommandText = create_table_player_ship;
-            dbcmd.ExecuteReader();
+            dbcmd.ExecuteNonQuery();
             dbcmd.Dispose();
 
             dbcmd = conn.CreateCommand();
@@ -106,13 +107,15 @@ public class DatabaseHandler : MonoBehaviour
                 "ammo INTEGER," +
                 "is_tutorial INTEGER," +
                 "x_tutorial_progress_id INTEGER," +
+                "dialogue_progress INTEGER," +
+                "chosen_ship_id INTEGER," +
                 "is_mission_in_progress INTEGER," +
                 "x_mission_info_id INTEGER," +
                 "CONSTRAINT fkey0 FOREIGN KEY (x_tutorial_progress_id) REFERENCES tutorial_progress (tutorial_progress_id) ON DELETE RESTRICT ON UPDATE CASCADE," +
                 "FOREIGN KEY (x_mission_info_id) REFERENCES mission_info (mission_info_id) ON DELETE RESTRICT ON UPDATE CASCADE" +
                 ");";
             dbcmd.CommandText = create_table_player_stat;
-            dbcmd.ExecuteReader();
+            dbcmd.ExecuteNonQuery();
             dbcmd.Dispose();
 
             dbcmd = conn.CreateCommand();
@@ -126,7 +129,7 @@ public class DatabaseHandler : MonoBehaviour
                 ");";
             ;
             dbcmd.CommandText = create_table_tutorial_progress;
-            dbcmd.ExecuteReader();
+            dbcmd.ExecuteNonQuery();
             dbcmd.Dispose();
 
             //Insert data
@@ -134,12 +137,7 @@ public class DatabaseHandler : MonoBehaviour
             string insert_data =
                 "INSERT INTO main.mission_info VALUES(1, null, null);" +
 
-                "INSERT INTO main.player_ship VALUES(1, 1, 0, 1, 0, 0, 100);" +
-                "INSERT INTO main.player_ship VALUES(2, 2, 0, 0, 1, 0, 100);" +
-                "INSERT INTO main.player_ship VALUES(3, 3, 0, 0, 1, 0, 100);" +
-                "INSERT INTO main.player_ship VALUES(4, 4, 1, 0, 1, 0, 100);" +
-
-                "INSERT INTO main.player_stat VALUES(1, 'MyName', 4006890, 387200, 238005, 1, 1, 1, 1);" +
+                "INSERT INTO main.player_stat VALUES(1, 'MyName', 4006890, 387200, 238005, 1, 1, 1, 0, 1, 1);" +
 
                 "INSERT INTO main.tutorial_progress VALUES(1, 'Misi.', 0, 0);" +
                 "INSERT INTO main.tutorial_progress VALUES(2, 'Lanjut.', 0, 0);" +
@@ -157,6 +155,8 @@ public class DatabaseHandler : MonoBehaviour
             dbcmd.ExecuteNonQuery();
 
             conn.Close();
+
+            doneMakeDatabaseScreen.SetActive(true);
         }
     }
 
