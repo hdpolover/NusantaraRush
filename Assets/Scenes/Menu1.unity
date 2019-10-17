@@ -1001,6 +1001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eb4a49e2fb5fce4eb97b764e0e5a5b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   playerLevel: {fileID: 621207805}
   playerName: {fileID: 195551516}
   playerPoin: {fileID: 1754088674}
@@ -1009,6 +1010,14 @@ MonoBehaviour:
   scripts: {fileID: 195726311}
   setNameScreen: {fileID: 103253512}
   Name: {fileID: 1650207757}
+=======
+  playerLevel: {fileID: 0}
+  playerName: {fileID: 0}
+  playerPoin: {fileID: 0}
+  playerPart: {fileID: 0}
+  playerAmmo: {fileID: 0}
+  scripts: {fileID: 0}
+>>>>>>> Stashed changes
 --- !u!114 &195726316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1037,11 +1046,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ships:
-  - {fileID: 685219002}
-  - {fileID: 688152424}
-  - {fileID: 810828486}
-  - {fileID: 1042017407}
-  - {fileID: 665559322}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &306196107
 GameObject:
   m_ObjectHideFlags: 0
@@ -2030,6 +2039,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 621207805}
   m_CullTransparentMesh: 0
+<<<<<<< Updated upstream
 --- !u!1001 &665559321
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2270,6 +2280,8 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 688152423}
   m_PrefabAsset: {fileID: 0}
+=======
+>>>>>>> Stashed changes
 --- !u!1 &698282235
 GameObject:
   m_ObjectHideFlags: 0
@@ -2853,6 +2865,7 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
+<<<<<<< Updated upstream
 --- !u!1001 &810828485
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2933,6 +2946,8 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 810828485}
   m_PrefabAsset: {fileID: 0}
+=======
+>>>>>>> Stashed changes
 --- !u!1 &940742476
 GameObject:
   m_ObjectHideFlags: 0
@@ -3363,6 +3378,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1023758422}
   m_CullTransparentMesh: 0
+<<<<<<< Updated upstream
 --- !u!1001 &1042017406
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3443,6 +3459,8 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1042017406}
   m_PrefabAsset: {fileID: 0}
+=======
+>>>>>>> Stashed changes
 --- !u!1 &1046807181
 GameObject:
   m_ObjectHideFlags: 0
