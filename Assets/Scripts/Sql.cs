@@ -23,38 +23,21 @@ public class Sql : MonoBehaviour
         //set mission in progress is true
         myCommand.CommandText = "UPDATE player_stat SET is_mission_in_progress = 1 WHERE id = 1";
         myCommand.ExecuteNonQuery();
+                
+        myCommand.CommandText = "SELECT id FROM mission_ships WHERE id = "+shipId;
+        IDataReader reader = myCommand.ExecuteReader();
 
-        //if ship id is bigger than 50, then it's an enemy ship
-        if (shipId > 50)
+        if (reader.Read())
         {
-            myCommand.CommandText = "SELECT id FROM mission_ships WHERE id = "+shipId;
-            IDataReader reader = myCommand.ExecuteReader();
-
-            if (reader.Read())
-            {
-                reader.Close();
-                myCommand.CommandText = "UPDATE mission_ships SET node = " + node + " WHERE ship = " + shipId;
-                myCommand.ExecuteNonQuery();
-            }
-            else
-            {
-                reader.Close();
-                myCommand.CommandText = "INSERT INTO mission_ships(id, node, ship, x_mission_info_id) VALUES(" + shipId + ", "+node+", " + shipId + ", 1)";
-                myCommand.ExecuteNonQuery();
-            }
+            reader.Close();
+            myCommand.CommandText = "UPDATE mission_ships SET node = " + node + " WHERE ship = " + shipId;
+            myCommand.ExecuteNonQuery();
         }
         else
         {
-            if (node == 0)
-            {
-                myCommand.CommandText = "INSERT INTO mission_ships(id, node, ship, x_mission_info_id) VALUES(" + shipId + ", 0, " + shipId + ", 1)";
-                myCommand.ExecuteNonQuery();
-            }
-            else
-            {
-                myCommand.CommandText = "UPDATE mission_ships SET node = " + node + " WHERE ship = " + shipId;
-                myCommand.ExecuteNonQuery();
-            }
+            reader.Close();
+            myCommand.CommandText = "INSERT INTO mission_ships(id, node, ship, x_mission_info_id) VALUES(" + shipId + ", "+node+", " + shipId + ", 1)";
+            myCommand.ExecuteNonQuery();
         }
 
         myCommand.Dispose();

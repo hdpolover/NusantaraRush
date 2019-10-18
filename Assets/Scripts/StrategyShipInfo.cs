@@ -13,7 +13,7 @@ public class StrategyShipInfo : MonoBehaviour
     public GameObject ship;
 
     StrategyMove strategyMove;
-    TestTouchInput testTouchInput;
+    StrategyPlayer strategyPlayer;
     public bool isCheck = false;
 
     // Start is called before the first frame update
@@ -28,7 +28,7 @@ public class StrategyShipInfo : MonoBehaviour
     {
         if (ship != null && isCheck)
         {
-            testTouchInput = ship.GetComponent<TestTouchInput>();
+            strategyPlayer = ship.GetComponent<StrategyPlayer>();
             isCheck = false;
         }
     }
@@ -44,7 +44,7 @@ public class StrategyShipInfo : MonoBehaviour
     {
         shipInfoPanel.SetActive(false);
         strategyMove.shipTerpilih = false;
-        testTouchInput.terpilih = false;
+        strategyPlayer.terpilih = false;
         ship = null;
         isCheck = false;
         selesaiButton.interactable = true;

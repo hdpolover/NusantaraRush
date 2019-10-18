@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class EndStrategyScreen : MonoBehaviour
 {
-    public void End()
+    public void End(int mapIndex)
     {
-        SceneManager.LoadScene(11);
+        SceneManager.LoadScene(mapIndex);
     }
 }

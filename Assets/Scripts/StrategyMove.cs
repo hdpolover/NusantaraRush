@@ -36,6 +36,8 @@ public class StrategyMove : MonoBehaviour
 
     public Transform deployNode;
     public GameObject ship;
+    public GameObject[] enemy;
+    public GameObject[] enemyFirstnode;
     public GameObject chooseShipPanel;
     public GameObject informationPanel;
     public Button ship1;
@@ -91,11 +93,13 @@ public class StrategyMove : MonoBehaviour
         {
             if (reader.GetInt32(0) < 50)
             {
+                // for player instantiate
                 GameObject instance = Instantiate(ship, nodes[reader.GetInt32(1)].transform.position, nodes[reader.GetInt32(1)].transform.rotation);
-                TestTouchInput playerShip = instance.GetComponent<TestTouchInput>();
+                Destroy(ship);
+                StrategyPlayer playerShip = instance.GetComponent<StrategyPlayer>();
                 playerShip.nodeBefore = nodes[reader.GetInt32(1)];
                 playerShip.scripts = scripts;
-                playerShip.shipType = "Main Boat 1";
+                playerShip.shipType = "Ship Type";
                 playerShip.shipId = reader.GetInt32(0);
                 playerShip.nodePostion = reader.GetInt32(1);
                 movePoints++;
@@ -104,6 +108,21 @@ public class StrategyMove : MonoBehaviour
             else
             {
                 // for enemy instantiate
+                for (int i = 0; i < enemy.Length; i++)
+                {
+                    StrategyEnemy strategyEnemy = enemy[i].GetComponent<StrategyEnemy>();
+                    if (reader.GetInt32(0) == strategyEnemy.enemyShipId)
+                    {
+                        GameObject instance = Instantiate(enemy[i], nodes[reader.GetInt32(1)].transform.position, nodes[reader.GetInt32(1)].transform.rotation);
+                        enemyFirstnode[i].GetComponent<Nodes>().isBattle = false;
+                        nodes[reader.GetInt32(1)].GetComponent<Nodes>().isBattle = true;
+                        Destroy(enemy[i]);
+                        StrategyEnemy strategyEnemy2 = instance.GetComponent<StrategyEnemy>();
+                        strategyEnemy2.nodeBefore = nodes[reader.GetInt32(1)];
+                        strategyEnemy2.enemyShipId = reader.GetInt32(0);
+                        strategyEnemy2.positionOnNode = reader.GetInt32(1);
+                    }
+                }
             }
         }
 
@@ -121,7 +140,6 @@ public class StrategyMove : MonoBehaviour
 
     public void EndTurn()
     {
-        enemyTurn = true;
         movePoints = lastMovePoints;
         menyerahButton.interactable = true;
         batalButton.interactable = true;
@@ -131,6 +149,10 @@ public class StrategyMove : MonoBehaviour
         {
             sqlScript.DoneStrategyState();
             winScreen.SetActive(true);
+        }
+        else
+        {
+            enemyTurn = true;
         }
     }
 
