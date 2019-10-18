@@ -57,7 +57,7 @@ public class Toko : MonoBehaviour
 
         myCommand.CommandText = "SELECT poin, part, ammo FROM player_stat WHERE id = 1";
         IDataReader myReader = myCommand.ExecuteReader();
-        while (myReader.Read())
+        if (myReader.Read())
         {
             if (gold > myReader.GetInt32(0))
             {
@@ -106,16 +106,15 @@ public class Toko : MonoBehaviour
         myConnection.Open();
         IDbCommand myCommand = myConnection.CreateCommand();
 
-        for (int i = 0; i < tombolBeliKapal.Length; i++)
-        {
-            myCommand.CommandText = "SELECT id FROM player_ship WHERE id = " + i+1;
-            IDataReader reader = myCommand.ExecuteReader();
+        myCommand.CommandText = "SELECT id FROM player_ship";
+        IDataReader reader = myCommand.ExecuteReader();
 
-            if (reader.Read())
-            {
-                tombolBeliKapal[i].interactable = false;
-            }
-            reader.Close();
+        while (reader.Read())
+        {
+            tombolBeliKapal[reader.GetInt32(0)-1].interactable = false;
         }
+        reader.Close();
+        myCommand.Dispose();
+        myConnection.Close();
     }
 }

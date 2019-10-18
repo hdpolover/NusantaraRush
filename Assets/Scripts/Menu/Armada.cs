@@ -28,17 +28,16 @@ public class Armada : MonoBehaviour
         myConnection.Open();
         IDbCommand myCommand = myConnection.CreateCommand();
 
-        for (int i = 0; i < tombolKapalArmada.Length; i++)
-        {
-            myCommand.CommandText = "SELECT id FROM player_ship WHERE id = " + i + 1;
-            IDataReader reader = myCommand.ExecuteReader();
+        myCommand.CommandText = "SELECT id FROM player_ship";
+        IDataReader reader = myCommand.ExecuteReader();
 
-            if (reader.Read())
-            {
-                tombolKapalArmada[i].interactable = true;
-            }
-            reader.Close();
+        while (reader.Read())
+        {
+            tombolKapalArmada[reader.GetInt32(0)-1].interactable = true;
         }
+        reader.Close();
+        myCommand.Dispose();
+        myConnection.Close();
     }
 
     public void Pilihkapal(int id)
