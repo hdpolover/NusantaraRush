@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class SceneLoading : MonoBehaviour
 {
     public Image loadingBar;
+    public int sceneNumber;
 
     private void Start()
     {
@@ -15,7 +16,7 @@ public class SceneLoading : MonoBehaviour
 
     IEnumerator LoadAsyncScene()
     {
-        AsyncOperation battleScene = SceneManager.LoadSceneAsync(12);
+        AsyncOperation battleScene = SceneManager.LoadSceneAsync(sceneNumber);
         
         while (battleScene.progress < 1)
         {
