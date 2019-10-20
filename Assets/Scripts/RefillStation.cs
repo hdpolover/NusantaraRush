@@ -1,50 +1,72 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
 public class RefillStation : MonoBehaviour
 {
     BulletHandler bh;
-    public GameObject panelIsi;
-    public GameObject panelHabis;
-    public TextMeshProUGUI isian;
+    PlayerHealth ph;
 
-    private Button cannonBtn;
+    public GameObject PanelRefill;
+    public TextMeshProUGUI textIsi;
+
+    public Button mgBtn;
+    public Button cannonBtn;
+    public Button rocketBtn;
 
     private void Start()
     {
         bh = GameObject.FindGameObjectWithTag("Player").GetComponent<BulletHandler>();
-        cannonBtn = GameObject.Find("Cannon").GetComponent<Button>();
+        ph = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
 
-        panelIsi = GameObject.Find("PanelIsi");
-        panelIsi.SetActive(false);
+        PanelRefill.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        panelIsi.SetActive(true);
-        panelHabis.SetActive(false);
+        PanelRefill.SetActive(true);
     }
 
     private void OnTriggerStay(Collider other)
     {
-        cannonBtn.interactable = true;
+        if (other.gameObject.tag == "Player")
+        {
+            if (ph.currentHealth < ph.startHealth)
+            {
+                ph.currentHealth += 0.05f;
+                ph.healthBar.fillAmount = ph.currentHealth / ph.startHealth;
+            }
 
-        /*
-        if (bh.bulletCount < 100)
-        {
-            bh.bulletCount += 0.05f;
-        } else
-        {
-            isian.SetText("Amunisi penuh.");
+            if (mgBtn.interactable == true)
+            {
+                while (bh.mgBulletCount < bh.maxMgBulletCount)
+                {
+                    bh.mgBulletCount += 1;
+                }
+            }
+
+            if (cannonBtn.interactable == true)
+            {
+                while (bh.cannonBulletCount < bh.maxCannonBulletCount)
+                {
+                    bh.cannonBulletCount += 1;
+                }
+            }
+
+            if (rocketBtn.interactable == true)
+            {
+                while (bh.rocketBulletCount < bh.maxRocketBulletCount)
+                {
+                    bh.rocketBulletCount += 1;
+                }
+            }
+
+            textIsi.SetText("Sedang mengisi...");
         }
-        */
     }
     
     private void OnTriggerExit(Collider other)
     {
-        panelIsi.SetActive(false);
+        PanelRefill.SetActive(false);
     }
 }

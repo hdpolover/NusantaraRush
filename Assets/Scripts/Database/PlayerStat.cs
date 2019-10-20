@@ -119,6 +119,12 @@ public class PlayerStat : MonoBehaviour
                 int part = myReader.GetInt32(2);
                 int ammo = myReader.GetInt32(3);
 
+                //get playerstats to public
+                PlayerManager.instance.playerName = nama;
+                PlayerManager.instance.goldAmount = poin;
+                PlayerManager.instance.partAmount = part;
+                PlayerManager.instance.ammoAmount = ammo;
+
                 // Debug.Log(id+", "+nama+", "+poin+", "+part+", "+ammo);
                 playerName.GetComponent<TMPro.TextMeshProUGUI>().text = " " + nama;
                 playerPoin.GetComponent<TMPro.TextMeshProUGUI>().text = " " + poin;
