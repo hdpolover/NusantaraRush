@@ -6025,6 +6025,9 @@ MonoBehaviour:
   batalButton: {fileID: 248971491}
   selesaiButton: {fileID: 257384453}
   winScreen: {fileID: 913498128}
+  goldBonus: {fileID: 1315550724}
+  partBonus: {fileID: 993017357}
+  ammoBonus: {fileID: 1000456984}
   loseScreen: {fileID: 1683031937}
   confirmWindow: {fileID: 409062602}
   deployNode: {fileID: 199253983}

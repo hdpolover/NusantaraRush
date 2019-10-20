@@ -20,8 +20,8 @@ public class StrategyMove : MonoBehaviour
     public bool targetNodeIsEnemyBase;
     public bool targetNodeIsPlayerBase;
 
-    public int movePoints = 1;
-    private int lastMovePoints = 1;
+    public int movePoints = 2;
+    private int lastMovePoints = 2;
     public bool enemyTurn = false;
 
     public Text movePointsText;
@@ -31,6 +31,9 @@ public class StrategyMove : MonoBehaviour
     public Button selesaiButton;
 
     public GameObject winScreen;
+    public Text goldBonus;
+    public Text partBonus;
+    public Text ammoBonus;
     public GameObject loseScreen;
     public GameObject confirmWindow;
 
@@ -147,6 +150,53 @@ public class StrategyMove : MonoBehaviour
 
         if (targetNodeIsEnemyBase)
         {
+            int goldBonus_ = Random.Range(150, 350);
+            int partBonus_ = Random.Range(80, 280);
+            int ammoBonus_ = Random.Range(100, 300);
+            goldBonus.text = ""+goldBonus_;
+            partBonus.text = ""+partBonus_;
+            ammoBonus.text = ""+ammoBonus_;
+
+            string path_sqlite = "URI=file:" + Application.persistentDataPath + "/database.db";
+            IDbConnection myConnection = new SqliteConnection(path_sqlite);
+            myConnection.Open();
+            IDbCommand myCommand = myConnection.CreateCommand();
+
+            myCommand.CommandText = "SELECT poin, part, ammo, mission_progress, on_mission FROM player_stat";
+            IDataReader reader = myCommand.ExecuteReader();
+
+            int playerGold = 0;
+            int playerPart = 0;
+            int playerAmmo = 0;
+            int playerMissionProgress = 0;
+            int playerOnMission = 0;
+
+            if (reader.Read())
+            {
+                playerGold = reader.GetInt32(0);
+                playerPart = reader.GetInt32(1);
+                playerAmmo = reader.GetInt32(2);
+                playerMissionProgress = reader.GetInt32(3);
+                playerOnMission = reader.GetInt32(4);
+            }
+            reader.Dispose();
+            myCommand.Dispose();
+
+            myCommand = myConnection.CreateCommand();
+            myCommand.CommandText = "UPDATE player_stat SET poin = "+(playerGold + goldBonus_)+", part = " + (playerPart + partBonus_) + ", ammo = " + (playerAmmo + ammoBonus_);
+            myCommand.ExecuteNonQuery();
+            myCommand.Dispose();
+
+            if (playerMissionProgress < playerOnMission)
+            {
+                myCommand = myConnection.CreateCommand();
+                myCommand.CommandText = "UPDATE player_stat SET mission_progress = "+playerOnMission+" WHERE id = 1";
+                myCommand.ExecuteNonQuery();
+            }
+
+            myCommand.Dispose();
+            myConnection.Close();
+
             sqlScript.DoneStrategyState();
             winScreen.SetActive(true);
         }

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Data;
+using Mono.Data.Sqlite;
 
 public class Dialogue : MonoBehaviour
 {
@@ -19,11 +21,13 @@ public class Dialogue : MonoBehaviour
     public GameObject player;
     public GameObject nameTurn;
     public Text dialogueText;
+    public int thisDialogueProgressIs = 0;
+    int playerDialogueProgressIs = 0;
     int currentDialogue = 0;
 
     void Start()
     {
-        showDialogue();
+        CheckDialogue();
     }
 
     void Update(){}
@@ -38,6 +42,17 @@ public class Dialogue : MonoBehaviour
         if (dialogueTurn.Length == currentDialogue)
         {
             dialoguePanel.SetActive(false);
+
+            string path_sqlite = "URI=file:" + Application.persistentDataPath + "/database.db";
+            IDbConnection myConnection = new SqliteConnection(path_sqlite);
+            myConnection.Open();
+            IDbCommand myCommand = myConnection.CreateCommand();
+
+            myCommand.CommandText = "UPDATE player_stat SET dialogue_progress = "+(thisDialogueProgressIs+1)+" WHERE id = 1";
+            myCommand.ExecuteNonQuery();
+
+            myCommand.Dispose();
+            myConnection.Close();
         }
         else
         {
@@ -73,5 +88,34 @@ public class Dialogue : MonoBehaviour
         nameTurn.GetComponent<TMPro.TextMeshProUGUI>().text = name;
         dialogueText.text = text;
         currentDialogue++;
+    }
+
+    void CheckDialogue()
+    {
+        string path_sqlite = "URI=file:" + Application.persistentDataPath + "/database.db";
+        IDbConnection myConnection = new SqliteConnection(path_sqlite);
+        myConnection.Open();
+        IDbCommand myCommand = myConnection.CreateCommand();
+
+        myCommand.CommandText = "SELECT dialogue_progress FROM player_stat WHERE id = 1";
+        IDataReader myReader = myCommand.ExecuteReader();
+        if (myReader.Read())
+        {
+            playerDialogueProgressIs = myReader.GetInt32(0);
+        }
+
+        if (thisDialogueProgressIs == playerDialogueProgressIs)
+        {
+            showDialogue();
+            dialoguePanel.SetActive(true);
+        }
+        else
+        {
+            dialoguePanel.SetActive(false);
+        }
+
+        myReader.Dispose();
+        myCommand.Dispose();
+        myConnection.Close();
     }
 }
