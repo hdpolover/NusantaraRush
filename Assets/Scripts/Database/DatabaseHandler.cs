@@ -144,7 +144,7 @@ public class DatabaseHandler : MonoBehaviour
 
                 "INSERT INTO main.tutorial_progress VALUES(1, 'Misi.', 0, 0);" +
                 "INSERT INTO main.tutorial_progress VALUES(2, 'Lanjut.', 0, 0);" +
-                "INSERT INTO main.tutorial_progress VALUES(3, 'Pilih chapter.', 0, 0);" +
+                "INSERT INTO main.tutorial_progress VALUES(3, 'Pilih area.', 0, 0);" +
                 "INSERT INTO main.tutorial_progress VALUES(4, 'Pilih misi.', 0, 0);" +
                 "INSERT INTO main.tutorial_progress VALUES(5, 'Pilih kapal.', 0, 0);" +
                 "INSERT INTO main.tutorial_progress VALUES(6, 'Kirim kapal.', 0, 0);" +

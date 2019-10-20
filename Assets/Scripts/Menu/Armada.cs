@@ -33,7 +33,10 @@ public class Armada : MonoBehaviour
 
         while (reader.Read())
         {
-            tombolKapalArmada[reader.GetInt32(0)-1].interactable = true;
+            if (reader.GetInt32(0) != 0)
+            {
+                tombolKapalArmada[reader.GetInt32(0)-1].interactable = true;
+            }
         }
         reader.Close();
         myCommand.Dispose();
