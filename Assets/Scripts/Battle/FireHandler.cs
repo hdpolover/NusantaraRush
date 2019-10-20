@@ -14,7 +14,7 @@ public class FireHandler : MonoBehaviour
     public Button mgBtn;
     public Button cannonBtn;
     public Button rocketBtn;
-    //public GameObject panelHabis;
+
     BulletHandler bh;
 
     public float bulletForce;
