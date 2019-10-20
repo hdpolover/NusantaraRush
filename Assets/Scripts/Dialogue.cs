@@ -51,7 +51,7 @@ public class Dialogue : MonoBehaviour
             }
             else if (dialogueTurn[currentDialogue] == 2)
             {
-                setProperties(false, true, new Color32(255, 255, 225, 255), new Color32(255, 255, 225, 255), "Player name", texts[currentDialogue]);
+                setProperties(false, true, new Color32(255, 255, 225, 255), new Color32(255, 255, 225, 255), "Yanna", texts[currentDialogue]);
             }
             else if (dialogueTurn[currentDialogue] == 3)
             {
@@ -59,7 +59,7 @@ public class Dialogue : MonoBehaviour
             }
             else if (dialogueTurn[currentDialogue] == 4)
             {
-                setProperties(true, true, new Color32(75, 75, 75, 255), new Color32(255, 255, 225, 255), "Player name", texts[currentDialogue]);
+                setProperties(true, true, new Color32(75, 75, 75, 255), new Color32(255, 255, 225, 255), "Yanna", texts[currentDialogue]);
             }
         }
     }

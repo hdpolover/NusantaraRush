@@ -111,7 +111,10 @@ public class Toko : MonoBehaviour
 
         while (reader.Read())
         {
-            tombolBeliKapal[reader.GetInt32(0)-1].interactable = false;
+            if (reader.GetInt32(0) != 0)
+            {
+                tombolBeliKapal[reader.GetInt32(0)-1].interactable = false;
+            }
         }
         reader.Close();
         myCommand.Dispose();
