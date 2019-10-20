@@ -18,6 +18,8 @@ public class PlayerManager : MonoBehaviour
 
     public bool hasBoat1;
 
+    public int chosen_ship; //kapal yang dipilih di armada buat battle
+
 
     private void Awake()
     {

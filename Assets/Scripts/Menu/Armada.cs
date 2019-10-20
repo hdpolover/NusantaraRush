@@ -50,6 +50,7 @@ public class Armada : MonoBehaviour
         myConnection.Open();
         IDbCommand myCommand = myConnection.CreateCommand();
 
+        PlayerManager.instance.chosen_ship = id;
         myCommand.CommandText = "UPDATE player_stat SET chosen_ship_id = "+id;
         myCommand.ExecuteNonQuery();
         myCommand.Dispose();

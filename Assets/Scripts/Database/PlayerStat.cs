@@ -109,7 +109,7 @@ public class PlayerStat : MonoBehaviour
             IDbConnection myConnection = new SqliteConnection(path_sqlite);
             myConnection.Open();
             IDbCommand myCommand = myConnection.CreateCommand();
-            string sqlQuery = "SELECT nama, poin, part, ammo FROM player_stat";
+            string sqlQuery = "SELECT nama, poin, part, ammo, chosen_ship_id FROM player_stat";
             myCommand.CommandText = sqlQuery;
             IDataReader myReader = myCommand.ExecuteReader();
             while (myReader.Read())
@@ -124,6 +124,7 @@ public class PlayerStat : MonoBehaviour
                 PlayerManager.instance.goldAmount = poin;
                 PlayerManager.instance.partAmount = part;
                 PlayerManager.instance.ammoAmount = ammo;
+                PlayerManager.instance.chosen_ship = myReader.GetInt32(4);
 
                 // Debug.Log(id+", "+nama+", "+poin+", "+part+", "+ammo);
                 playerName.GetComponent<TMPro.TextMeshProUGUI>().text = " " + nama;
