@@ -54,6 +54,20 @@ public class Armada : MonoBehaviour
         myCommand.CommandText = "UPDATE player_stat SET chosen_ship_id = "+id;
         myCommand.ExecuteNonQuery();
         myCommand.Dispose();
+
+        myCommand = myConnection.CreateCommand();
+        myCommand.CommandText = "SELECT rocket_equip, mg_equip, cannon_equip FROM player_ship WHERE id = " + id;
+        IDataReader myReader = myCommand.ExecuteReader();
+
+        while (myReader.Read())
+        {
+            PlayerManager.instance.rocket_level = myReader.GetInt32(0);
+            PlayerManager.instance.mg_level = myReader.GetInt32(1);
+            PlayerManager.instance.cannon_level = myReader.GetInt32(2);
+        }
+
+        myReader.Close();
+        myCommand.Dispose();
         myConnection.Close();
 
         SceneManager.LoadScene(3);

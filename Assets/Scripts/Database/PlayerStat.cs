@@ -109,9 +109,13 @@ public class PlayerStat : MonoBehaviour
             IDbConnection myConnection = new SqliteConnection(path_sqlite);
             myConnection.Open();
             IDbCommand myCommand = myConnection.CreateCommand();
+
             string sqlQuery = "SELECT nama, poin, part, ammo, chosen_ship_id FROM player_stat";
             myCommand.CommandText = sqlQuery;
             IDataReader myReader = myCommand.ExecuteReader();
+
+            int chosenShip = 0;
+
             while (myReader.Read())
             {
                 string nama = myReader.GetString(0);
@@ -124,7 +128,7 @@ public class PlayerStat : MonoBehaviour
                 PlayerManager.instance.goldAmount = poin;
                 PlayerManager.instance.partAmount = part;
                 PlayerManager.instance.ammoAmount = ammo;
-                PlayerManager.instance.chosen_ship = myReader.GetInt32(4);
+                chosenShip = myReader.GetInt32(4);
 
                 // Debug.Log(id+", "+nama+", "+poin+", "+part+", "+ammo);
                 playerName.GetComponent<TMPro.TextMeshProUGUI>().text = " " + nama;
@@ -132,6 +136,22 @@ public class PlayerStat : MonoBehaviour
                 playerPart.GetComponent<TMPro.TextMeshProUGUI>().text = " " + part;
                 playerAmmo.GetComponent<TMPro.TextMeshProUGUI>().text = " " + ammo;
             }
+            myReader.Close();
+            myCommand.Dispose();
+
+            myCommand = myConnection.CreateCommand();
+            myCommand.CommandText = "SELECT rocket_equip, mg_equip, cannon_equip FROM player_ship WHERE id = "+chosenShip;
+            myReader =  myCommand.ExecuteReader();
+
+            while (myReader.Read())
+            {
+                PlayerManager.instance.rocket_level = myReader.GetInt32(0);
+                PlayerManager.instance.mg_level = myReader.GetInt32(1);
+                PlayerManager.instance.cannon_level = myReader.GetInt32(2);
+            }
+
+            PlayerManager.instance.chosen_ship = chosenShip;
+
             myReader.Close();
             myCommand.Dispose();
             myConnection.Close();

@@ -19,6 +19,9 @@ public class PlayerManager : MonoBehaviour
     public bool hasBoat1;
 
     public int chosen_ship; //kapal yang dipilih di armada buat battle
+    public int rocket_level; //level rocket
+    public int mg_level; //level mg
+    public int cannon_level; //level cannon
 
 
     private void Awake()
