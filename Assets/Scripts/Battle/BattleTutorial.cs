@@ -3,10 +3,8 @@
 public class BattleTutorial : MonoBehaviour
 {
     public GameObject[] tutorials;
-    public int currentIndex;
-
-    public GameObject ite;
-
+    private int currentIndex;
+   
     private void Start()
     {
         currentIndex = 1;
