@@ -29,6 +29,7 @@ public class SceneManaging : MonoBehaviour
         myConnection.Open();
         IDbCommand myCommand = myConnection.CreateCommand();
 
+        PlayerManager.instance.missionProgress = missionOrder;
         myCommand.CommandText = "UPDATE player_stat SET on_mission = "+missionOrder+" WHERE id = 1";
         myCommand.ExecuteNonQuery();
 

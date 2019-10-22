@@ -22,10 +22,14 @@ public class StrategyMove : MonoBehaviour
 
     public int movePoints = 2;
     private int lastMovePoints = 2;
+
+    [Header("Enemy turn")]
     public bool enemyTurn = false;
+    public int enemyIdTurn = 0;
 
     public Text movePointsText;
 
+    [Header("Info UI")]
     public Button menyerahButton;
     public Button batalButton;
     public Button selesaiButton;

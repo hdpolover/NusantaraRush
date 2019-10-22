@@ -5,6 +5,7 @@ using UnityEngine;
 public class Nodes : MonoBehaviour
 {
     public bool isBattle = false;
+    public bool isEnemy = false;
     public bool isEnemyBase = false;
     public bool isPlayerBase = false;
     public int nodePos;

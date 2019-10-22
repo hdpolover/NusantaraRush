@@ -118,6 +118,7 @@ public class StrategyEnemy : MonoBehaviour
                     {
                         nodeScript = nodeBefore.GetComponent<Nodes>();
                         nodeScript.isBattle = false;
+                        nodeScript.isEnemy   = false;
                     }
 
                     //set nodeBefore object variable with current node position
