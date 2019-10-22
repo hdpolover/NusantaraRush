@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -9,14 +8,17 @@ public class SceneLoading : MonoBehaviour
     public Image loadingBar;
     public int sceneNumber;
 
+    BattleSceneHandler bsh;
+
     private void Start()
     {
+        bsh = GetComponent<BattleSceneHandler>();
         StartCoroutine(LoadAsyncScene());
     }
 
     IEnumerator LoadAsyncScene()
     {
-        AsyncOperation battleScene = SceneManager.LoadSceneAsync(sceneNumber);
+        AsyncOperation battleScene = SceneManager.LoadSceneAsync(bsh.battleSceneChosenIndex);
         
         while (battleScene.progress < 1)
         {

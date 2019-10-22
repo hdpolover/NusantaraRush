@@ -6,7 +6,7 @@ public class PlayerStats : MonoBehaviour
     public TextMeshProUGUI goldText;
     public TextMeshProUGUI partText;
     public TextMeshProUGUI ammoText;
-
+    
     private int goldAmount;
     private int partAmount;
     private int ammoAmount;

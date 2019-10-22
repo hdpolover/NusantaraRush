@@ -3,9 +3,10 @@ using UnityEngine.UI;
 
 public class FireHandler : MonoBehaviour
 { 
-    public GameObject player;
     public GameObject firePoint;
     public GameObject firePoint1;
+
+    private int chosenPlayerShip;
 
     public GameObject rocketPrefab;
     public GameObject mgPrefab;
@@ -25,8 +26,8 @@ public class FireHandler : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        bh = player.GetComponent<BulletHandler>();
+        bh = GetComponent<BulletHandler>();
+        chosenPlayerShip = PlayerManager.instance.chosen_ship;
 
         mgBtn = GameObject.Find("Mg").GetComponent<Button>();
         rocketBtn = GameObject.Find("Rocket").GetComponent<Button>();
@@ -37,41 +38,54 @@ public class FireHandler : MonoBehaviour
 
     void CheckPlayerShip()
     {
-        if (player.name.Equals("PlayerBoat1"))
+        switch (chosenPlayerShip)
         {
-            bh.mgBulletCount = bh.maxMgBulletCount;
+            case 0:
+                bh.mgBulletCount = bh.maxMgBulletCount;
 
-            rocketBtn.interactable = false;
-            bh.rocketBulletCount = 0;
-            rocketBtn.GetComponent<Image>().color = new Color32(255, 255, 225, 255);
-            cannonBtn.interactable = false;
-            bh.cannonBulletCount = 0;
-            cannonBtn.GetComponent<Image>().color = new Color32(255, 255, 225, 255);
-        } else if (player.name.Equals("PlayerBoat2"))
-        {
-            bh.cannonBulletCount = bh.maxCannonBulletCount;
+                rocketBtn.interactable = false;
+                bh.rocketBulletCount = 0;
+                rocketBtn.GetComponent<Image>().color = new Color32(255, 255, 225, 255);
+                cannonBtn.interactable = false;
+                bh.cannonBulletCount = 0;
+                cannonBtn.GetComponent<Image>().color = new Color32(255, 255, 225, 255);
+                break;
+            case 1:
+                bh.cannonBulletCount = bh.maxCannonBulletCount;
 
-            mgBtn.interactable = false;
-            bh.mgBulletCount = 0;
-            mgBtn.GetComponent<Image>().color = new Color32(255, 255, 225, 255);
-            rocketBtn.interactable = false;
-            bh.rocketBulletCount = 0;
-            rocketBtn.GetComponent<Image>().color = new Color32(255, 255, 225, 255);
-        } else if (player.name.Equals("PlayerWarship1"))
-        {
-            mgBtn.interactable = false;
-            bh.mgBulletCount = 0;
-            mgBtn.GetComponent<Image>().color = new Color32(255, 255, 225, 255);
-        } else if (player.name.Equals("PlayerWarship2"))
-        {
-            cannonBtn.interactable = false;
-            bh.cannonBulletCount = 0;
-            cannonBtn.GetComponent<Image>().color = new Color32(255, 255, 225, 255);
-            mgBtn.interactable = false;
-            bh.mgBulletCount = 0;
-            mgBtn.GetComponent<Image>().color = new Color32(255, 255, 225, 255);
-            rocketBtn.interactable = false;
-            rocketBtn.GetComponent<Image>().color = new Color32(255, 255, 225, 255);
+                mgBtn.interactable = false;
+                bh.mgBulletCount = 0;
+                mgBtn.GetComponent<Image>().color = new Color32(255, 255, 225, 255);
+                rocketBtn.interactable = false;
+                bh.rocketBulletCount = 0;
+                rocketBtn.GetComponent<Image>().color = new Color32(255, 255, 225, 255);
+                break;
+            case 2:
+                bh.rocketBulletCount = bh.maxRocketBulletCount;
+
+                mgBtn.interactable = false;
+                bh.mgBulletCount = 0;
+                mgBtn.GetComponent<Image>().color = new Color32(255, 255, 225, 255);
+                cannonBtn.interactable = false;
+                bh.cannonBulletCount = 0;
+                cannonBtn.GetComponent<Image>().color = new Color32(255, 255, 225, 255);
+                break;
+            case 3:
+                bh.cannonBulletCount = bh.maxCannonBulletCount;
+                bh.mgBulletCount = bh.maxMgBulletCount;
+
+                rocketBtn.interactable = false;
+                bh.rocketBulletCount = 0;
+                rocketBtn.GetComponent<Image>().color = new Color32(255, 255, 225, 255);
+                break;
+            case 4:
+                bh.cannonBulletCount = bh.maxCannonBulletCount;
+                bh.rocketBulletCount = bh.maxRocketBulletCount;
+
+                mgBtn.interactable = false;
+                bh.mgBulletCount = 0;
+                mgBtn.GetComponent<Image>().color = new Color32(255, 255, 225, 255);
+                break;
         }
     }
 
@@ -87,7 +101,6 @@ public class FireHandler : MonoBehaviour
         ReduceRocketAmmo();
 
         Destroy(Temporary_Bullet_Handler, 5.0f);
-
     }
 
     public void FireMg()
@@ -126,7 +139,6 @@ public class FireHandler : MonoBehaviour
         }
         else
         {
-            
             GameObject Temporary_Bullet_Handler;
             Temporary_Bullet_Handler = Instantiate(cannonPrefab, firePoint.transform.position, Quaternion.identity) as GameObject;
 

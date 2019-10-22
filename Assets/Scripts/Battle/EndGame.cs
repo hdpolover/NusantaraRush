@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class EndGame : MonoBehaviour
 {
@@ -26,7 +28,13 @@ public class EndGame : MonoBehaviour
     {
         EndGameUI.SetActive(false);
 
-        player = GameObject.FindGameObjectWithTag("Player");
+        StartCoroutine(Wait1Sec());
+    }
+
+    IEnumerator Wait1Sec()
+    {
+        yield return new WaitForSeconds(1f);
+        player = GameObject.FindWithTag("Player");
     }
 
     int getEnemyTotal()
