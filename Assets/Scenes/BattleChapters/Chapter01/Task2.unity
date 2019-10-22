@@ -178,11 +178,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12b1c41b18804ee46a579b6ed41914cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBattle: 0
-  isEnemy: 0
+  isBattle: 1
+  isEnemy: 1
   isEnemyBase: 0
   isPlayerBase: 0
-  nodePos: 3
+  nodePos: 5
   allowedMoveFrom: 020000000300000006000000
 --- !u!1 &61805259
 GameObject:
@@ -3850,7 +3850,7 @@ MonoBehaviour:
   isEnemy: 0
   isEnemyBase: 0
   isPlayerBase: 0
-  nodePos: 3
+  nodePos: 4
   allowedMoveFrom: 0300000006000000
 --- !u!1 &880486778
 GameObject:
@@ -5237,7 +5237,7 @@ MonoBehaviour:
   speed: 10
   nodeBefore: {fileID: 2469002}
   positionOnNode: 4
-  enemyShipId: 99
+  enemyShipId: 98
   selesaiButton: {fileID: 257384453}
   loseScreen: {fileID: 1683031937}
   moveState: 0
@@ -5732,10 +5732,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBattle: 1
-  isEnemy: 0
+  isEnemy: 1
   isEnemyBase: 0
   isPlayerBase: 0
-  nodePos: 4
+  nodePos: 3
   allowedMoveFrom: 01000000020000000400000005000000
 --- !u!1 &1315550722
 GameObject:
@@ -6334,23 +6334,25 @@ MonoBehaviour:
   - {fileID: 199253982}
   - {fileID: 1149022867}
   - {fileID: 1180191515}
-  - {fileID: 877250295}
   - {fileID: 1227600525}
+  - {fileID: 877250295}
+  - {fileID: 2469002}
   - {fileID: 2074809732}
   nodeTarget: {fileID: 0}
   targetNodeIsBattle: 0
   targetNodeIsEnemyBase: 0
   targetNodeIsPlayerBase: 0
-  movePoints: 1
+  movePoints: 2
   enemyTurn: 0
+  enemyIdTurn: 0
   movePointsText: {fileID: 644596204}
   menyerahButton: {fileID: 1058207893}
   batalButton: {fileID: 248971491}
   selesaiButton: {fileID: 257384453}
-  winScreen: {fileID: 913498128}
   goldBonus: {fileID: 0}
   partBonus: {fileID: 0}
   ammoBonus: {fileID: 0}
+  winScreen: {fileID: 913498128}
   loseScreen: {fileID: 1683031937}
   confirmWindow: {fileID: 409062602}
   deployNode: {fileID: 199253983}
@@ -8363,7 +8365,7 @@ MonoBehaviour:
   isEnemy: 0
   isEnemyBase: 1
   isPlayerBase: 0
-  nodePos: 5
+  nodePos: 6
   allowedMoveFrom: 0400000005000000
 --- !u!1001 &2115743455
 PrefabInstance:

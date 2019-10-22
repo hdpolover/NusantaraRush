@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 using Mono.Data.Sqlite;
@@ -34,10 +32,11 @@ public class StrategyMove : MonoBehaviour
     public Button batalButton;
     public Button selesaiButton;
 
-    public GameObject winScreen;
+    [Header("End Game UI")]
     public Text goldBonus;
     public Text partBonus;
     public Text ammoBonus;
+    public GameObject winScreen;
     public GameObject loseScreen;
     public GameObject confirmWindow;
 
@@ -122,7 +121,9 @@ public class StrategyMove : MonoBehaviour
                     {
                         GameObject instance = Instantiate(enemy[i], nodes[reader.GetInt32(1)].transform.position, nodes[reader.GetInt32(1)].transform.rotation);
                         enemyFirstnode[i].GetComponent<Nodes>().isBattle = false;
+                        enemyFirstnode[i].GetComponent<Nodes>().isEnemy = false;
                         nodes[reader.GetInt32(1)].GetComponent<Nodes>().isBattle = true;
+                        nodes[reader.GetInt32(1)].GetComponent<Nodes>().isEnemy = true;
                         Destroy(enemy[i]);
                         StrategyEnemy strategyEnemy2 = instance.GetComponent<StrategyEnemy>();
                         strategyEnemy2.nodeBefore = nodes[reader.GetInt32(1)];
@@ -131,6 +132,7 @@ public class StrategyMove : MonoBehaviour
                     }
                 }
             }
+            selesaiButton.interactable = true;
         }
 
         reader.Close();
