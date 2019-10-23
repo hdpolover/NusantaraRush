@@ -13,10 +13,8 @@ public class PlayerManager : MonoBehaviour
 
     [Header("Stats")]
     public bool isNew; //nentuin player baru apa bukan
-
     public int missionProgress; //misi terakhir player
-
-    public bool hasBoat1;
+    public string playerShipNaame;
 
     [Header("Chosen Ship")]
     public int chosen_ship; //kapal yang dipilih di armada buat battle
