@@ -111,7 +111,7 @@ public class PlayerStat : MonoBehaviour
             myConnection.Open();
             IDbCommand myCommand = myConnection.CreateCommand();
 
-            string sqlQuery = "SELECT nama, poin, part, ammo, chosen_ship_id, is_tutorial FROM player_stat";
+            string sqlQuery = "SELECT nama, poin, part, ammo, chosen_ship_id, is_tutorial, mission_progress FROM player_stat";
             myCommand.CommandText = sqlQuery;
             IDataReader myReader = myCommand.ExecuteReader();
 
@@ -139,6 +139,8 @@ public class PlayerStat : MonoBehaviour
                 {
                     PlayerManager.instance.isNew = false;
                 }
+
+                PlayerManager.instance.missionProgress = myReader.GetInt32(6);
 
                 // Debug.Log(id+", "+nama+", "+poin+", "+part+", "+ammo);
                 playerName.GetComponent<TMPro.TextMeshProUGUI>().text = " " + nama;

@@ -198,6 +198,7 @@ public class StrategyMove : MonoBehaviour
                 myCommand = myConnection.CreateCommand();
                 myCommand.CommandText = "UPDATE player_stat SET mission_progress = "+playerOnMission+" WHERE id = 1";
                 myCommand.ExecuteNonQuery();
+                PlayerManager.instance.missionProgress = playerMissionProgress;
             }
 
             myCommand.Dispose();
