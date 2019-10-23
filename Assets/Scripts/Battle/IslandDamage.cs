@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class IslandDamage : MonoBehaviour
 {
@@ -6,8 +7,9 @@ public class IslandDamage : MonoBehaviour
 
     private void Start()
     {
-        ph = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
+        StartCoroutine(FindPlayer());
     }
+
     private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -15,5 +17,11 @@ public class IslandDamage : MonoBehaviour
             ph.currentHealth -= 0.1f;
             ph.healthBar.fillAmount = ph.currentHealth / ph.startHealth;
         }
+    }
+
+    IEnumerator FindPlayer()
+    {
+        yield return new WaitForSeconds(1f);
+        ph = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
     }
 }

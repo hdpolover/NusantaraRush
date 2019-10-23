@@ -20,13 +20,9 @@ public class FireHandler : MonoBehaviour
 
     public float bulletForce;
 
-    public float rocketDamage;
-    public float mgDamage;
-    public float cannonDamage;
-
     void Start()
     {
-        bh = GetComponent<BulletHandler>();
+        bh = gameObject.GetComponent<BulletHandler>();
         chosenPlayerShip = PlayerManager.instance.chosen_ship;
 
         mgBtn = GameObject.Find("Mg").GetComponent<Button>();
@@ -91,16 +87,23 @@ public class FireHandler : MonoBehaviour
 
     public void FireRocket()
     {
-        GameObject Temporary_Bullet_Handler;
-        Temporary_Bullet_Handler = Instantiate(rocketPrefab, firePoint.transform.position, firePoint.transform.rotation) as GameObject;
-        
-        Rigidbody Temporary_RigidBody;
-        Temporary_RigidBody = Temporary_Bullet_Handler.GetComponent<Rigidbody>();
-        
-        Temporary_RigidBody.AddForce(transform.forward * bulletForce);
-        ReduceRocketAmmo();
+        if (bh.rocketBulletCount <= 0)
+        {
+            rocketBtn.interactable = false;
+            rocketBtn.GetComponent<Image>().color = new Color32(255, 255, 225, 255);
+        } else
+        {
+            GameObject Temporary_Bullet_Handler;
+            Temporary_Bullet_Handler = Instantiate(rocketPrefab, firePoint.transform.position, firePoint.transform.rotation) as GameObject;
 
-        Destroy(Temporary_Bullet_Handler, 5.0f);
+            Rigidbody Temporary_RigidBody;
+            Temporary_RigidBody = Temporary_Bullet_Handler.GetComponent<Rigidbody>();
+
+            Temporary_RigidBody.AddForce(transform.forward * bulletForce);
+            ReduceRocketAmmo();
+
+            Destroy(Temporary_Bullet_Handler, 5.0f);
+        }
     }
 
     public void FireMg()

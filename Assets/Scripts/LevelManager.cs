@@ -19,6 +19,7 @@ public class LevelManager : MonoBehaviour
     //variables form db
     public int currentMission;
 
+    public GameObject playerShip;
     public int chosenShip;
     public int mgLevel;
     public int cannonLevel;
@@ -26,8 +27,8 @@ public class LevelManager : MonoBehaviour
 
     [Header("Spawn Points")]
     public Transform[] enemySpawnPoints;
-    
-    private void Start()
+
+    private void Awake()
     {
         currentMission = PlayerManager.instance.missionProgress;
         chosenShip = PlayerManager.instance.chosen_ship;
@@ -35,15 +36,13 @@ public class LevelManager : MonoBehaviour
         mgLevel = PlayerManager.instance.mg_level;
         cannonLevel = PlayerManager.instance.cannon_level;
         rocketLevel = PlayerManager.instance.rocket_level;
+    }
 
-        //playerShipPrefabs[0].SetActive(false);
-        //playerShipPrefabs[1].SetActive(false);
-        //playerShipPrefabs[2].SetActive(false);
-        //playerShipPrefabs[3].SetActive(false);
-        //playerShipPrefabs[4].SetActive(false);
-
+    private void Start()
+    {
         SetPlayerShip();
         SetShipDamage();
+        SetShipHealth();
         SetEnemies();
     }
 
@@ -53,18 +52,23 @@ public class LevelManager : MonoBehaviour
         {
             case 0:
                 playerShipPrefabs[0].SetActive(true);
+                playerShip = playerShipPrefabs[0];
                 break;
             case 1:
                 playerShipPrefabs[1].SetActive(true);
+                playerShip = playerShipPrefabs[1];
                 break;
             case 2:
                 playerShipPrefabs[2].SetActive(true);
+                playerShip = playerShipPrefabs[2];
                 break;
             case 3:
                 playerShipPrefabs[3].SetActive(true);
+                playerShip = playerShipPrefabs[3];
                 break;
             case 4:
                 playerShipPrefabs[4].SetActive(true);
+                playerShip = playerShipPrefabs[4];
                 break;
         }
     }
@@ -74,6 +78,28 @@ public class LevelManager : MonoBehaviour
         SetMgDamageBasedOnLevel(mgLevel);
         SetCannonDamageBasedOnLevel(cannonLevel);
         SetRocketDamageBasedOnLevel(rocketLevel);
+    }
+
+    void SetShipHealth()
+    {
+        switch (chosenShip)
+        {
+            case 0:
+                shipStartHealth = 100;
+                break;
+            case 1:
+                shipStartHealth = 130;
+                break;
+            case 2:
+                shipStartHealth = 150;
+                break;
+            case 3:
+                shipStartHealth = 200;
+                break;
+            case 4:
+                shipStartHealth = 250;
+                break;
+        }
     }
 
     void SetMgDamageBasedOnLevel(int level)

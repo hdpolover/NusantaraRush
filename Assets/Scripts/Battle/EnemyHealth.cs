@@ -11,13 +11,13 @@ public class EnemyHealth : MonoBehaviour
     private float currentHealth;
     private GameObject player;
 
-    FireHandler fr;
+    LevelManager lm;
     public GameObject cratePrefab;
 
     private void Start()
     {
-        player = GameObject.FindWithTag("Player");
-        fr = player.GetComponent<FireHandler>();
+        player = GameObject.Find("PlayerBoat1");
+        lm = player.GetComponent<LevelManager>();
         currentHealth = startHealth;
     }
 
@@ -39,11 +39,11 @@ public class EnemyHealth : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            gameObject.GetComponent<EnemyHealth>().TakeDamage(playerDamage);
+            TakeDamage(playerDamage);
             player.GetComponent<PlayerHealth>().TakeDamage(enemyDamage);
         } else if (collision.gameObject.tag == "Island")
         {
-
+            TakeDamage(3f);
         }
     }
 
@@ -53,17 +53,17 @@ public class EnemyHealth : MonoBehaviour
         {
             Destroy(other.gameObject);
 
-            gameObject.GetComponent<EnemyHealth>().TakeDamage(fr.mgDamage);
+            TakeDamage(10f);
         } else if (other.gameObject.tag == "CannonBullet")
         {
             Destroy(other.gameObject);
 
-            gameObject.GetComponent<EnemyHealth>().TakeDamage(fr.cannonDamage);
+            TakeDamage(lm.cannonDamage);
         } else if (other.gameObject.tag == "RocketBullet")
         {
             Destroy(other.gameObject);
 
-            gameObject.GetComponent<EnemyHealth>().TakeDamage(fr.rocketDamage);
+            TakeDamage(lm.rocketDamage);
         }
     }
 }

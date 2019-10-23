@@ -17,6 +17,7 @@ public class PauseManager : MonoBehaviour
         pauseButton.SetActive(false);
         pausePanel.SetActive(true);
         Time.timeScale = 0f;
+        Debug.Log("pause");
     }
 
     public void Resume()
@@ -31,6 +32,7 @@ public class PauseManager : MonoBehaviour
         surrenderPanel.SetActive(true);
         pausePanel.SetActive(false);
         Time.timeScale = 0f;
+        Debug.Log("surrend");
     }
 
     public void ConfirmSurrender()

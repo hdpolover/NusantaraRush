@@ -4,11 +4,12 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     public Image healthBar;
-    public float startHealth = 100;
+    public float startHealth;
     [HideInInspector] public float currentHealth;
 
     private void Start()
     {
+        startHealth = GameObject.Find("LevelManager").GetComponent<LevelManager>().shipStartHealth;
         currentHealth = startHealth;
     }
 

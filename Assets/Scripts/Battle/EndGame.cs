@@ -15,6 +15,8 @@ public class EndGame : MonoBehaviour
     public Sprite happyIcon;
     public Sprite sadIcon;
 
+    [Header("Ship Prefabs")]
+    public GameObject[] playerShips;
     private GameObject[] smallEnemies;
     private GameObject[] mediumEnemies;
     private GameObject[] bigEnemies;
@@ -22,20 +24,56 @@ public class EndGame : MonoBehaviour
     private int enemyTotal;
     public TextMeshProUGUI enemyTotalText;
     private GameObject player;
-    
+
+    PlayerHealth ph;
 
     private void Start()
     {
         EndGameUI.SetActive(false);
 
-        StartCoroutine(Wait1Sec());
+        // StartCoroutine(GetPlayerHealth());
+        SetPlayerShip();
+        ph = player.GetComponent<PlayerHealth>();
+        if (ph == null)
+        {
+            Debug.Log("Halo");
+        } else
+        {
+            Debug.Log("po");
+        }
     }
 
-    IEnumerator Wait1Sec()
+    void SetPlayerShip()
     {
-        yield return new WaitForSeconds(1f);
-        player = GameObject.FindWithTag("Player");
+        switch (PlayerManager.instance.chosen_ship)
+        {
+            case 0:
+                player = playerShips[0];
+                break;
+            case 1:
+                player = playerShips[1];
+                break;
+            case 2:
+                player = playerShips[2];
+                break;
+            case 3:
+                player = playerShips[3];
+                break;
+            case 4:
+                player = playerShips[4];
+                break;
+        }
     }
+    /*
+    IEnumerator GetPlayerHealth()
+    {
+        yield return new WaitForSeconds(2f);
+        player = GameObject.FindGameObjectWithTag("Player");
+        ph = player.GetComponent<PlayerHealth>();
+        Debug.Log("Done");
+        Debug.Log("ini: " + ph.currentHealth);
+    }
+    */
 
     int getEnemyTotal()
     {
@@ -46,7 +84,7 @@ public class EndGame : MonoBehaviour
         enemyTotal = smallEnemies.Length + mediumEnemies.Length + bigEnemies.Length;
         return enemyTotal;
     }
-
+ 
     private void Update()
     {
         getEnemyTotal();
@@ -62,7 +100,7 @@ public class EndGame : MonoBehaviour
         {
             if (player != null)
             {
-                if (player.GetComponent<PlayerHealth>().currentHealth <= 0)
+                if (ph.currentHealth <= 0)
                 {
                     Destroy(player.gameObject);
                     endLabel.SetText("KAMU GAGAL!");
@@ -79,6 +117,7 @@ public class EndGame : MonoBehaviour
         pauseButton.SetActive(false);
         EndGameUI.SetActive(true);
         Time.timeScale = 0f;
+        Debug.Log("over");
     }
 
     public void Win()
@@ -86,6 +125,7 @@ public class EndGame : MonoBehaviour
         pauseButton.SetActive(false);
         EndGameUI.SetActive(true);
         Time.timeScale = 0f;
+        Debug.Log("win");
     }
 
     public void Lanjutan()
