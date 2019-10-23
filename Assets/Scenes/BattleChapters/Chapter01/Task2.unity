@@ -951,6 +951,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1439627436}
+        m_MethodName: ButtonClick2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1439627432}
         m_MethodName: cancelChoose
         m_Mode: 1
@@ -1084,6 +1095,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1439627436}
+        m_MethodName: ButtonClick2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1439627430}
         m_MethodName: EndTurn
         m_Mode: 1
@@ -2092,6 +2114,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2058676320}
     m_Modifications:
+    - target: {fileID: 7593341670653618957, guid: 83a2efabc14aa5841acca84054ed09ba,
+        type: 3}
+      propertyPath: m_Name
+      value: Jungle
+      objectReference: {fileID: 0}
     - target: {fileID: 7652706108976105845, guid: 83a2efabc14aa5841acca84054ed09ba,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2146,11 +2173,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7593341670653618957, guid: 83a2efabc14aa5841acca84054ed09ba,
-        type: 3}
-      propertyPath: m_Name
-      value: Jungle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83a2efabc14aa5841acca84054ed09ba, type: 3}
@@ -2871,6 +2893,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1977885577}
     m_Modifications:
+    - target: {fileID: 5366370733235958485, guid: 741cec4723a43e14e848d481fde68384,
+        type: 3}
+      propertyPath: m_Name
+      value: Rock
+      objectReference: {fileID: 0}
     - target: {fileID: 8724681316004222562, guid: 741cec4723a43e14e848d481fde68384,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2941,11 +2968,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 5366370733235958485, guid: 741cec4723a43e14e848d481fde68384,
-        type: 3}
-      propertyPath: m_Name
-      value: Rock
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 741cec4723a43e14e848d481fde68384, type: 3}
 --- !u!4 &690839717 stripped
@@ -2961,6 +2983,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1977885577}
     m_Modifications:
+    - target: {fileID: 5838972159343160705, guid: 39f1749af2e7d774ca4e672e15c6d25c,
+        type: 3}
+      propertyPath: m_Name
+      value: Palm2 (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 8929532373923363753, guid: 39f1749af2e7d774ca4e672e15c6d25c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3015,11 +3042,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5838972159343160705, guid: 39f1749af2e7d774ca4e672e15c6d25c,
-        type: 3}
-      propertyPath: m_Name
-      value: Palm2 (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39f1749af2e7d774ca4e672e15c6d25c, type: 3}
@@ -4493,6 +4515,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 215085756}
     m_Modifications:
+    - target: {fileID: 2394896902007138872, guid: 178c41c90aac77a4cb4c790371a17c27,
+        type: 3}
+      propertyPath: m_Name
+      value: rockyIsland
+      objectReference: {fileID: 0}
     - target: {fileID: 2394896902007138873, guid: 178c41c90aac77a4cb4c790371a17c27,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4547,11 +4574,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2394896902007138872, guid: 178c41c90aac77a4cb4c790371a17c27,
-        type: 3}
-      propertyPath: m_Name
-      value: rockyIsland
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 178c41c90aac77a4cb4c790371a17c27, type: 3}
@@ -4898,6 +4920,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2058676320}
     m_Modifications:
+    - target: {fileID: 4949818734162846052, guid: 462d8ebcc2c1085458b19c780fe3ab9a,
+        type: 3}
+      propertyPath: m_Name
+      value: sandIsland
+      objectReference: {fileID: 0}
     - target: {fileID: 4949818734162846055, guid: 462d8ebcc2c1085458b19c780fe3ab9a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4967,11 +4994,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4949818734162846052, guid: 462d8ebcc2c1085458b19c780fe3ab9a,
-        type: 3}
-      propertyPath: m_Name
-      value: sandIsland
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 462d8ebcc2c1085458b19c780fe3ab9a, type: 3}
@@ -5061,7 +5083,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1058207894}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1439627436}
+        m_MethodName: ButtonClick2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 0
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1058207894
@@ -6070,6 +6103,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1439627436}
+        m_MethodName: ButtonClick2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 359849812}
         m_MethodName: MoveScene
         m_Mode: 3
@@ -6128,6 +6172,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2058676320}
     m_Modifications:
+    - target: {fileID: 5838972159343160705, guid: 39f1749af2e7d774ca4e672e15c6d25c,
+        type: 3}
+      propertyPath: m_Name
+      value: Palm2
+      objectReference: {fileID: 0}
     - target: {fileID: 8929532373923363753, guid: 39f1749af2e7d774ca4e672e15c6d25c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6182,11 +6231,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5838972159343160705, guid: 39f1749af2e7d774ca4e672e15c6d25c,
-        type: 3}
-      propertyPath: m_Name
-      value: Palm2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39f1749af2e7d774ca4e672e15c6d25c, type: 3}
@@ -6309,6 +6353,8 @@ GameObject:
   - component: {fileID: 1439627433}
   - component: {fileID: 1439627434}
   - component: {fileID: 1439627435}
+  - component: {fileID: 1439627437}
+  - component: {fileID: 1439627436}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Scripts
@@ -6446,6 +6492,117 @@ MonoBehaviour:
   rocketLevel: {fileID: 909269104}
   mgLevel: {fileID: 1991654072}
   cannonLevel: {fileID: 2054529804}
+--- !u!114 &1439627436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439627429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e4fd71ad0e7e0c4fb8de65e5b204fb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 1439627437}
+  buttonClick1: {fileID: 8300000, guid: 3f29b8819170e70488e6155b6cfd345c, type: 3}
+  buttonClick2: {fileID: 8300000, guid: 2307ee18bae11c348bd1bcbc3835c937, type: 3}
+--- !u!82 &1439627437
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439627429}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1442331101
 GameObject:
   m_ObjectHideFlags: 0
