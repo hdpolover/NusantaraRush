@@ -24,8 +24,10 @@ public class PlayerManager : MonoBehaviour
     public int mg_level; //level mg
     public int cannon_level; //level cannon
 
-    [Header("Chosen Ship")]
+    [Header("In battle data")]
+    public bool isBattle;
     public GameObject enemyOnBattle;
+    public bool isBattleWin;
 
     [Header("menu")]
     public string menuLog = "Belum ada rekam aktivitas";

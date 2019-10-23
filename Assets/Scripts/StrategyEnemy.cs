@@ -128,6 +128,8 @@ public class StrategyEnemy : MonoBehaviour
                     if (node.GetComponent<Nodes>().isBattle && !node.GetComponent<Nodes>().isEnemy)
                     {
                         SceneManager.LoadScene(battleSceneIndex);
+                        // save enemy game object
+                        PlayerManager.instance.enemyOnBattle = gameObject;
                     }
                     else
                     {
