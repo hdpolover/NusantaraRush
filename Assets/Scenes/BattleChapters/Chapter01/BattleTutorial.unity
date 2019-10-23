@@ -1301,8 +1301,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1730652779}
-        m_MethodName: 
+      - m_Target: {fileID: 268721243}
+        m_MethodName: FireMg
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2547,7 +2547,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &510448316
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6892,7 +6892,7 @@ PrefabInstance:
     - target: {fileID: 2913983204037847080, guid: bf189daf553e680488b63844eb18165f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.22
+      value: 2.31
       objectReference: {fileID: 0}
     - target: {fileID: 2913983204037847080, guid: bf189daf553e680488b63844eb18165f,
         type: 3}
@@ -8849,7 +8849,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1456326895
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9986,7 +9986,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1576699886
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10650,7 +10650,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -213, y: -261}
+  m_AnchoredPosition: {x: -213, y: -262.95}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1727728093
@@ -11114,8 +11114,8 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1784641939}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &1784641942
-MeshCollider:
+--- !u!65 &1784641942
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -11124,10 +11124,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_Mesh: {fileID: -5495902117074765545, guid: b1e81dc6ffb638549accb820493edcea, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 3.0483105, y: 2.725613, z: 17.80698}
+  m_Center: {x: 0.1220369, y: 0.01538981, z: 2.7893229}
 --- !u!114 &1784641946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11340,7 +11339,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1888176399
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12458,7 +12457,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2071977147
 RectTransform:
   m_ObjectHideFlags: 0

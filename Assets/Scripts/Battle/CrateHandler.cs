@@ -6,7 +6,7 @@ public class CrateHandler : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.Find(PlayerManager.instance.playerShipNaame);
     }
 
     private void OnTriggerEnter(Collider collision)

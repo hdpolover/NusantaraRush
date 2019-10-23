@@ -16,8 +16,8 @@ public class EnemyHealth : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.Find("PlayerBoat1");
-        lm = player.GetComponent<LevelManager>();
+        player = GameObject.Find(PlayerManager.instance.playerShipNaame);
+        lm = GameObject.Find("LevelManager").GetComponent<LevelManager>();
         currentHealth = startHealth;
     }
 
@@ -37,10 +37,11 @@ public class EnemyHealth : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject == player)
         {
             TakeDamage(playerDamage);
             player.GetComponent<PlayerHealth>().TakeDamage(enemyDamage);
+            Debug.Log("ada");
         } else if (collision.gameObject.tag == "Island")
         {
             TakeDamage(3f);
@@ -53,7 +54,7 @@ public class EnemyHealth : MonoBehaviour
         {
             Destroy(other.gameObject);
 
-            TakeDamage(10f);
+            TakeDamage(lm.mgDamage);
         } else if (other.gameObject.tag == "CannonBullet")
         {
             Destroy(other.gameObject);

@@ -53,22 +53,27 @@ public class LevelManager : MonoBehaviour
             case 0:
                 playerShipPrefabs[0].SetActive(true);
                 playerShip = playerShipPrefabs[0];
+                PlayerManager.instance.playerShipNaame = "PlayerBoat1";
                 break;
             case 1:
                 playerShipPrefabs[1].SetActive(true);
                 playerShip = playerShipPrefabs[1];
+                PlayerManager.instance.playerShipNaame = "PlayerBoat2";
                 break;
             case 2:
                 playerShipPrefabs[2].SetActive(true);
                 playerShip = playerShipPrefabs[2];
+                PlayerManager.instance.playerShipNaame = "PlayerWarship1";
                 break;
             case 3:
                 playerShipPrefabs[3].SetActive(true);
                 playerShip = playerShipPrefabs[3];
+                PlayerManager.instance.playerShipNaame = "PlayerWarship2";
                 break;
             case 4:
                 playerShipPrefabs[4].SetActive(true);
                 playerShip = playerShipPrefabs[4];
+                PlayerManager.instance.playerShipNaame = "PlayerWarship3";
                 break;
         }
     }

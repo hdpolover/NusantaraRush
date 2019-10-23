@@ -7,6 +7,7 @@ public class RefillStation : MonoBehaviour
     BulletHandler bh;
     PlayerHealth ph;
 
+    private GameObject player;
     public GameObject PanelRefill;
     public TextMeshProUGUI textIsi;
 
@@ -16,20 +17,28 @@ public class RefillStation : MonoBehaviour
 
     private void Start()
     {
-        bh = GameObject.FindGameObjectWithTag("Player").GetComponent<BulletHandler>();
-        ph = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
+        player = GameObject.Find(PlayerManager.instance.playerShipNaame);
+        bh = player.GetComponent<BulletHandler>();
+        ph = player.GetComponent<PlayerHealth>();
 
         PanelRefill.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        PanelRefill.SetActive(true);
+        if (other.gameObject == player)
+        {
+            PanelRefill.SetActive(true);
+            Debug.Log("Masuk");
+        } else
+        {
+            Debug.Log("Lain");
+        }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject == player)
         {
             if (ph.currentHealth < ph.startHealth)
             {

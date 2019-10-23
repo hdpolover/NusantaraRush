@@ -22,12 +22,11 @@ public class FireHandler : MonoBehaviour
 
     void Start()
     {
-        bh = gameObject.GetComponent<BulletHandler>();
+        bh = GameObject.Find(PlayerManager.instance.playerShipNaame).GetComponent<BulletHandler>();
         chosenPlayerShip = PlayerManager.instance.chosen_ship;
 
         mgBtn = GameObject.Find("Mg").GetComponent<Button>();
         rocketBtn = GameObject.Find("Rocket").GetComponent<Button>();
-        cannonBtn = GameObject.Find("Cannon").GetComponent<Button>();
         
         CheckPlayerShip();
     }
