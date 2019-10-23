@@ -18,11 +18,17 @@ public class PlayerManager : MonoBehaviour
 
     public bool hasBoat1;
 
+    [Header("Chosen Ship")]
     public int chosen_ship; //kapal yang dipilih di armada buat battle
     public int rocket_level; //level rocket
     public int mg_level; //level mg
     public int cannon_level; //level cannon
 
+    [Header("Chosen Ship")]
+    public GameObject enemyOnBattle;
+
+    [Header("menu")]
+    public string menuLog = "Belum ada rekam aktivitas";
 
     private void Awake()
     {

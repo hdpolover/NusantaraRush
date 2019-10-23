@@ -19,6 +19,8 @@ public class UpgradeWeapon : MonoBehaviour
 
     int chosenShip;
     int chosenWeapon;
+    string chosenShipName;
+    string chosenWeaponName;
 
     int goldMultiplier;
     int partMultiplier;
@@ -52,6 +54,7 @@ public class UpgradeWeapon : MonoBehaviour
         if (id == 0)
         {
             chosenShip = id;
+            chosenShipName = "Default";
             senjata[0].interactable = false;
             senjata[1].interactable = true;
             senjata[2].interactable = false;
@@ -59,6 +62,7 @@ public class UpgradeWeapon : MonoBehaviour
         else if (id == 1)
         {
             chosenShip = id;
+            chosenShipName = "Main Boat 1";
             senjata[0].interactable = false;
             senjata[1].interactable = true;
             senjata[2].interactable = false;
@@ -66,6 +70,7 @@ public class UpgradeWeapon : MonoBehaviour
         else if (id == 2)
         {
             chosenShip = id;
+            chosenShipName = "Main Boat 2";
             senjata[0].interactable = false;
             senjata[1].interactable = false;
             senjata[2].interactable = true;
@@ -73,6 +78,7 @@ public class UpgradeWeapon : MonoBehaviour
         else if (id == 3)
         {
             chosenShip = id;
+            chosenShipName = "Warship 1";
             senjata[0].interactable = true;
             senjata[1].interactable = false;
             senjata[2].interactable = true;
@@ -80,6 +86,7 @@ public class UpgradeWeapon : MonoBehaviour
         else if (id == 4)
         {
             chosenShip = id;
+            chosenShipName = "Warship 2";
             senjata[0].interactable = true;
             senjata[1].interactable = false;
             senjata[2].interactable = true;
@@ -98,14 +105,17 @@ public class UpgradeWeapon : MonoBehaviour
         chosenWeapon = tipeSenjata;
         if (tipeSenjata == 0)
         {
+            chosenWeaponName = "Rocket";
             commandString = "SELECT rocket_equip FROM player_ship WHERE id = "+chosenShip;
         }
         else if (tipeSenjata == 1)
         {
+            chosenWeaponName = "MG";
             commandString = "SELECT mg_equip FROM player_ship WHERE id = "+chosenShip;
         }
         else if (tipeSenjata == 2)
         {
+            chosenWeaponName = "Cannon";
             commandString = "SELECT cannon_equip FROM player_ship WHERE id = " + chosenShip;
         }
 
@@ -180,6 +190,8 @@ public class UpgradeWeapon : MonoBehaviour
             myCommand.CommandText = commandString;
             myCommand.ExecuteNonQuery();
             myCommand.Dispose();
+
+            PlayerManager.instance.menuLog = chosenWeaponName+" pada kapal tipe "+chosenShipName+" sudah diperkuat menjadi level "+(level+1);
 
             myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UPDATE player_stat SET poin = " + goldMultiplier + ", part = " + partMultiplier + ", ammo = " + ammoMultiplier;

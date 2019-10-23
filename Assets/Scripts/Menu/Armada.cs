@@ -70,6 +70,29 @@ public class Armada : MonoBehaviour
         myCommand.Dispose();
         myConnection.Close();
 
+        string shipName = "";
+        if (id == 0)
+        {
+            shipName = "Default";
+        }
+        else if (id == 1)
+        {
+            shipName = "Main Boat 1";
+        }
+        else if (id == 2)
+        {
+            shipName = "Main Boat 2";
+        }
+        else if (id == 3)
+        {
+            shipName = "Warship 1";
+        }
+        else if (id == 4)
+        {
+            shipName = "Warship 2";
+        }
+
+        PlayerManager.instance.menuLog = "Kapal tipe : "+shipName+" terpilih, siap ke medan tempur!";
         SceneManager.LoadScene(3);
     }
 }

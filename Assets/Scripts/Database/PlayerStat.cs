@@ -20,6 +20,7 @@ public class PlayerStat : MonoBehaviour
 
     public GameObject setNameScreen;
     public Text Name;
+    public Text menuLog;
     DatabaseHandler dbHandler;
 
     // Start is called before the first frame update
@@ -164,6 +165,8 @@ public class PlayerStat : MonoBehaviour
             myReader.Close();
             myCommand.Dispose();
             myConnection.Close();
+
+            menuLog.text = PlayerManager.instance.menuLog;
         }
     }
 }

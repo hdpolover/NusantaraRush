@@ -35,8 +35,8 @@ public class StrategyShipInfo : MonoBehaviour
 
     public void setInfo(string name, int hp)
     {
-        shipName.text = name;
-        shipHp.text = hp + "%";
+        //shipName.text = name;
+        //shipHp.text = hp + "%";
         shipInfoPanel.SetActive(true);
     }
 
