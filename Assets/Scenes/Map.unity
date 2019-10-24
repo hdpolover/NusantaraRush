@@ -451,6 +451,7 @@ GameObject:
   - component: {fileID: 43388912}
   - component: {fileID: 43388915}
   - component: {fileID: 43388914}
+  - component: {fileID: 43388916}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -652,6 +653,18 @@ MonoBehaviour:
   audioSource: {fileID: 43388914}
   buttonClick1: {fileID: 8300000, guid: 3f29b8819170e70488e6155b6cfd345c, type: 3}
   buttonClick2: {fileID: 8300000, guid: 2307ee18bae11c348bd1bcbc3835c937, type: 3}
+--- !u!114 &43388916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43388908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78ba034f724b1cd47a159f20500fc903, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &92862899
 GameObject:
   m_ObjectHideFlags: 0
@@ -1464,11 +1477,11 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 43388909}
-        m_MethodName: NextTutorial
-        m_Mode: 1
+        m_MethodName: NextTutorial2
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1404121411}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1492,6 +1505,17 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 43388916}
+        m_MethodName: MoveScene
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 8
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -10247,11 +10271,11 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 43388909}
-        m_MethodName: NextTutorial
-        m_Mode: 1
+        m_MethodName: NextTutorial2
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 304090941}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

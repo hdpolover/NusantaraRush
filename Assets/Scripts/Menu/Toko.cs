@@ -24,25 +24,25 @@ public class Toko : MonoBehaviour
 
         if (id == 0)
         {
-            gold = 50000; part = 10000; ammo = 19000;
+            gold = 3000; part = 1800; ammo = 1200;
             ProsesBeli(id, gold, part, ammo, "Main Boat 1", "INSERT INTO player_ship VALUES(1, 1, 0, 0, 1, 0, 100)");
             //tombolBeliKapal[0].interactable = false;
         }
         else if (id == 1)
         {
-            gold = 80500; part = 35000; ammo = 40500;
+            gold = 5500; part = 2400; ammo = 1800;
             ProsesBeli(id, gold, part, ammo, "Main Boat 2", "INSERT INTO player_ship VALUES(2, 2, 1, 0, 0, 0, 100)");
             //tombolBeliKapal[1].interactable = false;
         }
         else if (id == 2)
         {
-            gold = 130800; part = 55000; ammo = 65000;
+            gold = 8000; part = 2800; ammo = 2200;
             ProsesBeli(id, gold, part, ammo, "Warship 1", "INSERT INTO player_ship VALUES(3, 3, 0, 1, 1, 0, 100)");
             //tombolBeliKapal[2].interactable = false;
         }
         else if (id == 3)
         {
-            gold = 165550; part = 65860; ammo = 88500;
+            gold = 9500; part = 3100; ammo = 2500;
             ProsesBeli(id, gold, part, ammo, "Warship 2", "INSERT INTO player_ship VALUES(4, 4, 1, 0, 1, 0, 100)");
             //tombolBeliKapal[3].interactable = false;
         }
