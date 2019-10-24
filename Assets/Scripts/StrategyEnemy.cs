@@ -129,7 +129,7 @@ public class StrategyEnemy : MonoBehaviour
                     {
                         SceneManager.LoadScene(battleSceneIndex);
                         // save enemy game object
-                        PlayerManager.instance.enemyOnBattle = gameObject;
+                        PlayerManager.instance.enemyOnBattle = enemyShipId;
                     }
                     else
                     {

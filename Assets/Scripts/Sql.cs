@@ -81,10 +81,4 @@ public class Sql : MonoBehaviour
         myCommand.Dispose();
         myConnection.Close();
     }
-
-    public void FreeLoot()
-    {
-        //if strategy win
-
-    }
 }

@@ -92,6 +92,27 @@ public class StrategyMove : MonoBehaviour
         myConnection.Open();
         IDbCommand myCommand = myConnection.CreateCommand();
 
+        //Destroy enemy ship on battle if win battle
+        if (PlayerManager.instance.isBattleWin == 1)
+        {
+            GameObject[] enemy = GameObject.FindGameObjectsWithTag("EnemyStrategy");
+
+            for (int i = 0; i < enemy.Length; i++)
+            {
+                int enemyShipId_ = enemy[i].GetComponent<StrategyEnemy>().enemyShipId;
+                if (enemyShipId_ == PlayerManager.instance.enemyOnBattle)
+                {
+                    //Debug.Log(enemyShipId_);
+                    myCommand.CommandText = "DELETE FROM mission_ships WHERE id = "+enemyShipId_;
+                    myCommand.ExecuteNonQuery();
+                    Destroy(enemy[i].gameObject);
+                }
+            }
+        }
+        myCommand.Dispose();
+
+        //spawn loaded ships to nodes
+        myCommand = myConnection.CreateCommand();
         myCommand.CommandText = "SELECT * FROM mission_ships";
         IDataReader reader = myCommand.ExecuteReader();
 
@@ -193,12 +214,12 @@ public class StrategyMove : MonoBehaviour
             myCommand.ExecuteNonQuery();
             myCommand.Dispose();
 
-            if (playerMissionProgress < playerOnMission)
+            if (playerMissionProgress == playerOnMission)
             {
                 myCommand = myConnection.CreateCommand();
-                myCommand.CommandText = "UPDATE player_stat SET mission_progress = "+playerOnMission+" WHERE id = 1";
+                myCommand.CommandText = "UPDATE player_stat SET mission_progress = "+(playerOnMission+1)+" WHERE id = 1";
                 myCommand.ExecuteNonQuery();
-                PlayerManager.instance.missionProgress = playerMissionProgress;
+                PlayerManager.instance.missionProgress = playerMissionProgress+1;
             }
 
             myCommand.Dispose();

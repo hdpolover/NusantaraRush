@@ -24,8 +24,8 @@ public class PlayerManager : MonoBehaviour
 
     [Header("In battle data")]
     public bool isBattle;
-    public GameObject enemyOnBattle;
-    public bool isBattleWin;
+    public int enemyOnBattle;
+    public int isBattleWin;// 0 = neutral, 1 = win, 2 = lose
 
     [Header("menu")]
     public string menuLog = "Belum ada rekam aktivitas";

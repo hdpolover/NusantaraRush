@@ -130,6 +130,13 @@ public class StrategyPlayer : MonoBehaviour
                     if (strategyMove.targetNodeIsBattle)
                     {
                         SceneManager.LoadScene(battleSceneIndex);
+
+                        //save enemy ship id to playerManager -> which is enemy on battle
+                        GameObject enemy = GameObject.FindWithTag("EnemyStrategy");
+                        if (enemy.GetComponent<StrategyEnemy>().positionOnNode == nodePostion)
+                        {
+                            PlayerManager.instance.enemyOnBattle = enemy.GetComponent<StrategyEnemy>().enemyShipId;
+                        }
                     }
                     //save strategy state to sql
                     else

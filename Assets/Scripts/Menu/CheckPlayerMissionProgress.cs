@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class CheckPlayerMissionProgress : MonoBehaviour
 {
     public Button[] buttonChapter;
+    public Button[] buttonMission;
 
     void Start()
     {
@@ -50,6 +51,11 @@ public class CheckPlayerMissionProgress : MonoBehaviour
                     }
                 }
             }
+        }
+
+        for (int i = playerMissionProgress; i < buttonMission.Length; i++)
+        {
+            buttonMission[i].interactable = false;
         }
 
         reader.Close();
