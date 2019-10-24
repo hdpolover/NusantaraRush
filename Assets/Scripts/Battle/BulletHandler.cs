@@ -3,9 +3,9 @@ using TMPro;
 
 public class BulletHandler : MonoBehaviour
 {
-    public float maxMgBulletCount = 300;
-    public float maxCannonBulletCount = 50;
-    public float maxRocketBulletCount = 20;
+    public float maxMgBulletCount;
+    public float maxCannonBulletCount;
+    public float maxRocketBulletCount;
 
     [HideInInspector] public float mgBulletCount;
     [HideInInspector] public float cannonBulletCount;

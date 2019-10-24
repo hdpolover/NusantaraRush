@@ -25,11 +25,14 @@ public class LevelManager : MonoBehaviour
     public int cannonLevel;
     public int rocketLevel;
 
+    BulletHandler bh;
+
     [Header("Spawn Points")]
     public Transform[] enemySpawnPoints;
 
     private void Awake()
     {
+        bh = GameObject.Find(PlayerManager.instance.playerShipNaame).GetComponent<BulletHandler>();
         currentMission = PlayerManager.instance.missionProgress;
         chosenShip = PlayerManager.instance.chosen_ship;
 
@@ -182,6 +185,74 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    void SetWeaoonMaxBullet(int mgLevel, int cannonLevel, int rocketLevel)
+    {
+        switch (mgLevel)
+        {
+            case 1:
+                bh.maxMgBulletCount = 300;
+                break;
+            case 2:
+                bh.maxMgBulletCount = 350;
+                break;
+            case 3:
+                bh.maxMgBulletCount = 400;
+                break;
+            case 4:
+                bh.maxMgBulletCount = 450;
+                break;
+            case 5:
+                bh.maxMgBulletCount = 500;
+                break;
+            default:
+                bh.maxMgBulletCount = 0;
+                break;
+        }
+
+        switch (cannonLevel)
+        {
+            case 1:
+                bh.maxCannonBulletCount = 100;
+                break;
+            case 2:
+                bh.maxCannonBulletCount = 120;
+                break;
+            case 3:
+                bh.maxCannonBulletCount = 140;
+                break;
+            case 4:
+                bh.maxCannonBulletCount = 160;
+                break;
+            case 5:
+                bh.maxCannonBulletCount = 180;
+                break;
+            default:
+                bh.maxCannonBulletCount = 0;
+                break;
+        }
+
+        switch (rocketLevel)
+        {
+            case 1:
+                bh.maxRocketBulletCount = 40;
+                break;
+            case 2:
+                bh.maxMgBulletCount = 60;
+                break;
+            case 3:
+                bh.maxMgBulletCount = 80;
+                break;
+            case 4:
+                bh.maxMgBulletCount = 100;
+                break;
+            case 5:
+                bh.maxMgBulletCount = 120;
+                break;
+            default:
+                bh.maxMgBulletCount = 0;
+                break;
+        }
+    }
 
     void SetEnemies()
     {
@@ -192,38 +263,110 @@ public class LevelManager : MonoBehaviour
                 Instantiate(enemySmallPrefab, enemySpawnPoints[1].position, Quaternion.identity);
                 break;
             case 2:
+                Instantiate(enemySmallPrefab, enemySpawnPoints[0].position, Quaternion.identity);
                 Instantiate(enemySmallPrefab, enemySpawnPoints[1].position, Quaternion.identity);
+                Instantiate(enemyMediumPrefab, enemySpawnPoints[2].position, Quaternion.identity);
                 break;
             case 3:
+                Instantiate(enemySmallPrefab, enemySpawnPoints[0].position, Quaternion.identity);
+                Instantiate(enemySmallPrefab, enemySpawnPoints[1].position, Quaternion.identity);
+                Instantiate(enemySmallPrefab, enemySpawnPoints[2].position, Quaternion.identity);
+                Instantiate(enemyMediumPrefab, enemySpawnPoints[3].position, Quaternion.identity);
                 break;
             case 4:
+                Instantiate(enemySmallPrefab, enemySpawnPoints[0].position, Quaternion.identity);
+                Instantiate(enemySmallPrefab, enemySpawnPoints[1].position, Quaternion.identity);
+                Instantiate(enemyMediumPrefab, enemySpawnPoints[2].position, Quaternion.identity);
+                Instantiate(enemyMediumPrefab, enemySpawnPoints[3].position, Quaternion.identity);
                 break;
             case 5:
+                Instantiate(enemySmallPrefab, enemySpawnPoints[0].position, Quaternion.identity);
+                Instantiate(enemySmallPrefab, enemySpawnPoints[1].position, Quaternion.identity);
+                Instantiate(enemyMediumPrefab, enemySpawnPoints[2].position, Quaternion.identity);
+                Instantiate(enemyBigPrefab, enemySpawnPoints[3].position, Quaternion.identity);
                 break;
             case 6:
+                Instantiate(enemySmallPrefab, enemySpawnPoints[0].position, Quaternion.identity);
+                Instantiate(enemySmallPrefab, enemySpawnPoints[1].position, Quaternion.identity);
+                Instantiate(enemyMediumPrefab, enemySpawnPoints[2].position, Quaternion.identity);
+                Instantiate(enemyMediumPrefab, enemySpawnPoints[3].position, Quaternion.identity);
+                Instantiate(enemyBigPrefab, enemySpawnPoints[4].position, Quaternion.identity);
                 break;
             case 7:
+                Instantiate(enemySmallPrefab, enemySpawnPoints[0].position, Quaternion.identity);
+                Instantiate(enemyMediumPrefab, enemySpawnPoints[1].position, Quaternion.identity);
+                Instantiate(enemyMediumPrefab, enemySpawnPoints[2].position, Quaternion.identity);
+                Instantiate(enemyMediumPrefab, enemySpawnPoints[3].position, Quaternion.identity);
+                Instantiate(enemyBigPrefab, enemySpawnPoints[4].position, Quaternion.identity);
                 break;
             case 8:
+                Instantiate(enemySmallPrefab, enemySpawnPoints[0].position, Quaternion.identity);
+                Instantiate(enemyMediumPrefab, enemySpawnPoints[1].position, Quaternion.identity);
+                Instantiate(enemyMediumPrefab, enemySpawnPoints[2].position, Quaternion.identity);
+                Instantiate(enemyBigPrefab, enemySpawnPoints[3].position, Quaternion.identity);
+                Instantiate(enemyBigPrefab, enemySpawnPoints[4].position, Quaternion.identity);
                 break;
             case 9:
+                Instantiate(enemySmallPrefab, enemySpawnPoints[0].position, Quaternion.identity);
+                Instantiate(enemySmallPrefab, enemySpawnPoints[1].position, Quaternion.identity);
+                Instantiate(enemyMediumPrefab, enemySpawnPoints[2].position, Quaternion.identity);
+                Instantiate(enemyMediumPrefab, enemySpawnPoints[3].position, Quaternion.identity);
+                Instantiate(enemyBigPrefab, enemySpawnPoints[4].position, Quaternion.identity);
+                Instantiate(enemyBigPrefab, enemySpawnPoints[5].position, Quaternion.identity);
                 break;
             case 10:
+                Instantiate(enemySmallPrefab, enemySpawnPoints[0].position, Quaternion.identity);
+                Instantiate(enemySmallPrefab, enemySpawnPoints[1].position, Quaternion.identity);
+                Instantiate(enemySmallPrefab, enemySpawnPoints[2].position, Quaternion.identity);
+                Instantiate(enemyMediumPrefab, enemySpawnPoints[3].position, Quaternion.identity);
+                Instantiate(enemyBigPrefab, enemySpawnPoints[4].position, Quaternion.identity);
+                Instantiate(enemyBigPrefab, enemySpawnPoints[5].position, Quaternion.identity);
                 break;
             case 11:
+                Instantiate(enemySmallPrefab, enemySpawnPoints[0].position, Quaternion.identity);
+                Instantiate(enemySmallPrefab, enemySpawnPoints[1].position, Quaternion.identity);
+                Instantiate(enemyMediumPrefab, enemySpawnPoints[2].position, Quaternion.identity);
+                Instantiate(enemyMediumPrefab, enemySpawnPoints[3].position, Quaternion.identity);
+                Instantiate(enemyBigPrefab, enemySpawnPoints[4].position, Quaternion.identity);
+                Instantiate(enemyBigPrefab, enemySpawnPoints[5].position, Quaternion.identity);
                 break;
             case 12:
+                Instantiate(enemySmallPrefab, enemySpawnPoints[0].position, Quaternion.identity);
+                Instantiate(enemySmallPrefab, enemySpawnPoints[1].position, Quaternion.identity);
+                Instantiate(enemyMediumPrefab, enemySpawnPoints[2].position, Quaternion.identity);
+                Instantiate(enemyMediumPrefab, enemySpawnPoints[3].position, Quaternion.identity);
+                Instantiate(enemyMediumPrefab, enemySpawnPoints[4].position, Quaternion.identity);
+                Instantiate(enemyBigPrefab, enemySpawnPoints[5].position, Quaternion.identity);
+                Instantiate(enemyBigPrefab, enemySpawnPoints[6].position, Quaternion.identity);
                 break;
             case 13:
+                Instantiate(enemySmallPrefab, enemySpawnPoints[0].position, Quaternion.identity);
+                Instantiate(enemySmallPrefab, enemySpawnPoints[1].position, Quaternion.identity);
+                Instantiate(enemySmallPrefab, enemySpawnPoints[2].position, Quaternion.identity);
+                Instantiate(enemySmallPrefab, enemySpawnPoints[3].position, Quaternion.identity);
+                Instantiate(enemyMediumPrefab, enemySpawnPoints[4].position, Quaternion.identity);
+                Instantiate(enemyMediumPrefab, enemySpawnPoints[5].position, Quaternion.identity);
+                Instantiate(enemyBigPrefab, enemySpawnPoints[6].position, Quaternion.identity);
                 break;
             case 14:
+                Instantiate(enemySmallPrefab, enemySpawnPoints[0].position, Quaternion.identity);
+                Instantiate(enemySmallPrefab, enemySpawnPoints[1].position, Quaternion.identity);
+                Instantiate(enemySmallPrefab, enemySpawnPoints[2].position, Quaternion.identity);
+                Instantiate(enemySmallPrefab, enemySpawnPoints[3].position, Quaternion.identity);
+                Instantiate(enemySmallPrefab, enemySpawnPoints[4].position, Quaternion.identity);
+                Instantiate(enemySmallPrefab, enemySpawnPoints[5].position, Quaternion.identity);
+                Instantiate(enemyBigPrefab, enemySpawnPoints[6].position, Quaternion.identity);
                 break;
             case 15:
-                break;
-            default:
                 Instantiate(enemySmallPrefab, enemySpawnPoints[0].position, Quaternion.identity);
+                Instantiate(enemySmallPrefab, enemySpawnPoints[1].position, Quaternion.identity);
+                Instantiate(enemySmallPrefab, enemySpawnPoints[2].position, Quaternion.identity);
+                Instantiate(enemyMediumPrefab, enemySpawnPoints[3].position, Quaternion.identity);
+                Instantiate(enemyMediumPrefab, enemySpawnPoints[4].position, Quaternion.identity);
+                Instantiate(enemyMediumPrefab, enemySpawnPoints[5].position, Quaternion.identity);
+                Instantiate(enemyBigPrefab, enemySpawnPoints[6].position, Quaternion.identity);
+                Instantiate(enemyBigPrefab, enemySpawnPoints[7].position, Quaternion.identity);
                 break;
-
         }
     }
 }
