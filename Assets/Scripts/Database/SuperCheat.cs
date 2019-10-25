@@ -47,6 +47,11 @@ public class SuperCheat : MonoBehaviour
         myConnection.Close();
     }
 
+    public void OpeneConfirmWindow()
+    {
+        confirmWindow.SetActive(true);
+    }
+
     public void CloseConfirmWindow()
     {
         confirmWindow.SetActive(false);

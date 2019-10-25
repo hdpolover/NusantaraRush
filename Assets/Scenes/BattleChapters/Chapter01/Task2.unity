@@ -6398,9 +6398,9 @@ MonoBehaviour:
   menyerahButton: {fileID: 1058207893}
   batalButton: {fileID: 248971491}
   selesaiButton: {fileID: 257384453}
-  goldBonus: {fileID: 0}
-  partBonus: {fileID: 0}
-  ammoBonus: {fileID: 0}
+  goldBonus: {fileID: 1315550724}
+  partBonus: {fileID: 993017357}
+  ammoBonus: {fileID: 1000456984}
   winScreen: {fileID: 913498128}
   loseScreen: {fileID: 1683031937}
   confirmWindow: {fileID: 409062602}
@@ -8911,7 +8911,7 @@ MonoBehaviour:
   nodePostion: 0
   speed: 10
   scripts: {fileID: 1439627429}
-  battleSceneIndex: 13
+  battleSceneIndex: 10
 --- !u!1 &8232384203966612454
 GameObject:
   m_ObjectHideFlags: 0

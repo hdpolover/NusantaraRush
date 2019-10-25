@@ -9,10 +9,13 @@ using UnityEngine.UI;
 public class Toko : MonoBehaviour
 {
     public Button[] tombolBeliKapal;
+    public GameObject confirmWindow;
+    public Text confirmText;
 
     // Start is called before the first frame update
     void Start()
     {
+        confirmWindow.SetActive(false);
         CekKapalPlayer();
     }
 
@@ -61,15 +64,18 @@ public class Toko : MonoBehaviour
         {
             if (gold > myReader.GetInt32(0))
             {
-                Debug.Log("tidak cukup gold");
+                confirmText.text = "Gold tidak cukup.";
+                confirmWindow.SetActive(true);
             }
             else if (part > myReader.GetInt32(1))
             {
-                Debug.Log("tidak cukup part");
+                confirmText.text = "Part tidak cukup.";
+                confirmWindow.SetActive(true);
             }
             else if (ammo > myReader.GetInt32(2))
             {
-                Debug.Log("tidak cukup ammo");
+                confirmText.text = "Ammo tidak cukup.";
+                confirmWindow.SetActive(true);
             }
             else
             {
@@ -120,5 +126,10 @@ public class Toko : MonoBehaviour
         reader.Close();
         myCommand.Dispose();
         myConnection.Close();
+    }
+
+    public void CloseConfirmWindow()
+    {
+        confirmWindow.SetActive(false);
     }
 }

@@ -8524,7 +8524,7 @@ MonoBehaviour:
   nodePostion: 0
   speed: 10
   scripts: {fileID: 1439627429}
-  battleSceneIndex: 13
+  battleSceneIndex: 10
 --- !u!1 &8232384203966612454
 GameObject:
   m_ObjectHideFlags: 0
