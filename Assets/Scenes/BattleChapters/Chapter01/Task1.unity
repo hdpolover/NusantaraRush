@@ -3146,7 +3146,7 @@ MonoBehaviour:
   checkPositionOnNode_State: 0
   node: {fileID: 0}
   scripts: {fileID: 1439627429}
-  battleSceneIndex: 13
+  battleSceneIndex: 10
 --- !u!114 &724207789
 MonoBehaviour:
   m_ObjectHideFlags: 0

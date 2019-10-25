@@ -41,7 +41,6 @@ public class EnemyHealth : MonoBehaviour
         {
             TakeDamage(playerDamage);
             player.GetComponent<PlayerHealth>().TakeDamage(enemyDamage);
-            Debug.Log("ada");
         } else if (collision.gameObject.tag == "Island")
         {
             TakeDamage(3f);

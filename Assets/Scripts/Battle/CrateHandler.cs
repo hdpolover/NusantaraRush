@@ -28,16 +28,16 @@ public class CrateHandler : MonoBehaviour
 
     int getRandomGold()
     {
-        return Random.Range(10, 50);
+        return Random.Range(100, 200);
     }
 
     int getRandomPart()
     {
-        return Random.Range(10, 50);
+        return Random.Range(30, 100);
     }
 
     int getRandomAmmo()
     {
-        return Random.Range(10, 50);
+        return Random.Range(30, 100);
     }
 }

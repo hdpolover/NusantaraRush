@@ -32,18 +32,19 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
-        bh = GameObject.Find(PlayerManager.instance.playerShipNaame).GetComponent<BulletHandler>();
         currentMission = PlayerManager.instance.missionProgress;
         chosenShip = PlayerManager.instance.chosen_ship;
-
-        mgLevel = PlayerManager.instance.mg_level;
-        cannonLevel = PlayerManager.instance.cannon_level;
-        rocketLevel = PlayerManager.instance.rocket_level;
     }
 
     private void Start()
     {
         SetPlayerShip();
+        bh = GameObject.Find(PlayerManager.instance.playerShipNaame).GetComponent<BulletHandler>();
+
+        mgLevel = PlayerManager.instance.mg_level;
+        cannonLevel = PlayerManager.instance.cannon_level;
+        rocketLevel = PlayerManager.instance.rocket_level;
+
         SetShipDamage();
         SetShipHealth();
         SetEnemies();

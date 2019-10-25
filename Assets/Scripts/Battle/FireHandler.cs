@@ -11,6 +11,10 @@ public class FireHandler : MonoBehaviour
     public GameObject rocketPrefab;
     public GameObject mgPrefab;
     public GameObject cannonPrefab;
+
+    public bool hasMg;
+    public bool hasCannon;
+    public bool hasRocket;
     
     public Button mgBtn;
     public Button cannonBtn;
@@ -26,6 +30,7 @@ public class FireHandler : MonoBehaviour
         chosenPlayerShip = PlayerManager.instance.chosen_ship;
 
         mgBtn = GameObject.Find("Mg").GetComponent<Button>();
+        cannonBtn = GameObject.Find("Cannon").GetComponent<Button>();
         rocketBtn = GameObject.Find("Rocket").GetComponent<Button>();
         
         CheckPlayerShip();
@@ -37,6 +42,9 @@ public class FireHandler : MonoBehaviour
         {
             case 0:
                 bh.mgBulletCount = bh.maxMgBulletCount;
+                hasMg = true;
+                hasCannon = false;
+                hasRocket = false;
 
                 rocketBtn.interactable = false;
                 bh.rocketBulletCount = 0;
@@ -47,6 +55,9 @@ public class FireHandler : MonoBehaviour
                 break;
             case 1:
                 bh.cannonBulletCount = bh.maxCannonBulletCount;
+                hasMg = false;
+                hasCannon = true;
+                hasRocket = false;
 
                 mgBtn.interactable = false;
                 bh.mgBulletCount = 0;
@@ -57,6 +68,9 @@ public class FireHandler : MonoBehaviour
                 break;
             case 2:
                 bh.rocketBulletCount = bh.maxRocketBulletCount;
+                hasMg = false;
+                hasCannon = false;
+                hasRocket = true;
 
                 mgBtn.interactable = false;
                 bh.mgBulletCount = 0;
@@ -68,6 +82,9 @@ public class FireHandler : MonoBehaviour
             case 3:
                 bh.cannonBulletCount = bh.maxCannonBulletCount;
                 bh.mgBulletCount = bh.maxMgBulletCount;
+                hasMg = true;
+                hasCannon = true;
+                hasRocket = false;
 
                 rocketBtn.interactable = false;
                 bh.rocketBulletCount = 0;
@@ -76,6 +93,9 @@ public class FireHandler : MonoBehaviour
             case 4:
                 bh.cannonBulletCount = bh.maxCannonBulletCount;
                 bh.rocketBulletCount = bh.maxRocketBulletCount;
+                hasMg = false;
+                hasCannon = true;
+                hasRocket = true;
 
                 mgBtn.interactable = false;
                 bh.mgBulletCount = 0;
@@ -94,6 +114,7 @@ public class FireHandler : MonoBehaviour
         {
             GameObject Temporary_Bullet_Handler;
             Temporary_Bullet_Handler = Instantiate(rocketPrefab, firePoint.transform.position, firePoint.transform.rotation) as GameObject;
+            Temporary_Bullet_Handler.transform.Rotate(Vector3.left * 90);
 
             Rigidbody Temporary_RigidBody;
             Temporary_RigidBody = Temporary_Bullet_Handler.GetComponent<Rigidbody>();
@@ -113,10 +134,13 @@ public class FireHandler : MonoBehaviour
             mgBtn.GetComponent<Image>().color = new Color32(255, 255, 225, 255);
         } else
         {
+            mgBtn.interactable = true;
             GameObject Temporary_Bullet_Handler;
             Temporary_Bullet_Handler = Instantiate(mgPrefab, firePoint.transform.position, firePoint.transform.rotation) as GameObject;
+            Temporary_Bullet_Handler.transform.Rotate(Vector3.left * 90);
             GameObject Temporary_Bullet_Handler1;
             Temporary_Bullet_Handler1 = Instantiate(mgPrefab, firePoint1.transform.position, firePoint1.transform.rotation) as GameObject;
+            Temporary_Bullet_Handler1.transform.Rotate(Vector3.left * 90);
 
             Rigidbody Temporary_RigidBody;
             Temporary_RigidBody = Temporary_Bullet_Handler.GetComponent<Rigidbody>();
@@ -141,11 +165,10 @@ public class FireHandler : MonoBehaviour
         }
         else
         {
+            cannonBtn.interactable = true;
             GameObject Temporary_Bullet_Handler;
             Temporary_Bullet_Handler = Instantiate(cannonPrefab, firePoint.transform.position, Quaternion.identity) as GameObject;
-
-            Temporary_Bullet_Handler.transform.Rotate(Vector3.left);
-
+            Temporary_Bullet_Handler.transform.Rotate(Vector3.left * 90);
             Rigidbody Temporary_RigidBody;
             Temporary_RigidBody = Temporary_Bullet_Handler.GetComponent<Rigidbody>();
 

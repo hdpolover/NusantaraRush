@@ -619,7 +619,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadingBar: {fileID: 1431789750}
-  battleSceneIndices: 0e0000000f00000010000000
+  battleSceneIndices: 0b0000000c0000000d000000
   battleSceneChosenIndex: 0
 --- !u!1 &1833475716
 GameObject:
